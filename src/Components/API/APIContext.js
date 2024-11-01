@@ -1,9 +1,8 @@
-import axios from "axios";
+import { apiClient } from "./APIClient";
 
 export async function Logged(Username, Password) {
-    console.log("Logged function");
     try {
-        const response = await axios.post('http://localhost:8080/auth/login', 
+        const response = await apiClient.post('/auth/login', 
             {
               username: Username, 
               password: Password 
@@ -20,11 +19,11 @@ export async function Logged(Username, Password) {
             
         if(response.status===200)
             console.log('Login successful:', response.data);
-        return response.status === 200;
+        return response.data;
 
         }
     catch (error) {
         console.error("Login failed:", error);
-        return false;
+        return null;
     }
 }

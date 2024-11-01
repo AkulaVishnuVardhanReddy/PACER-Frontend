@@ -10,8 +10,7 @@ import AboutUs from './Components/AboutUs';
 import JudiciaryInfo from './Components/JudiciaryInfo';
 import ChiefJustice from './Components/ChiefJustice';
 import FormerJudges from './Components/FormerJudges';
-import AuthProvider from './Components/API/APIContext';
-import LoginForm from './Components/LoginTemp';
+
 const AppLayout = () => {
   return (
     <>
