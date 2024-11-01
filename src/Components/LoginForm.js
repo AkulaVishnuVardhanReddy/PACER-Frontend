@@ -8,7 +8,9 @@ import { FaUser, FaLock } from "react-icons/fa";
 const Login = () => {
   const [UserName, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for showing password
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,8 +23,10 @@ const Login = () => {
       } else if (userData.role === "ROLE_LAWYER") {
         navigate("/aboutus");
       }
+    } else {
+      setErrorMessage("Login Failed");
     }
-  };
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen relative">
@@ -32,15 +36,18 @@ const Login = () => {
           backgroundImage: `url(${takkeda})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          // Removed blur effect
-          // filter: "blur(5px) brightness(0.9)", 
         }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-700 opacity-75"></div>
       <div className="relative z-10 w-full max-w-xs p-8 bg-white bg-opacity-90 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-2xl">
-        <div className="flex justify-center">
-        <img src={Logo} alt="Logo" className="h-24 w-36"/>
+        <div className="flex justify-center mb-4">
+          <img src={Logo} alt="Logo" className="h-28 w-28" />
         </div>
+        {errorMessage && (
+          <div className="mb-4 p-3 bg-red-400 text-white text-sm rounded-md text-center">
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4 relative">
             <FaUser className="absolute left-3 top-3 text-gray-600" />
@@ -59,7 +66,7 @@ const Login = () => {
             <FaLock className="absolute left-3 top-3 text-gray-600" />
             <input
               className="w-full pl-10 py-3 bg-white text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 placeholder-gray-400"
-              type="password"
+              type={showPassword ? "text" : "password"} // Toggle password visibility
               id="password"
               placeholder="Password"
               value={Password}
@@ -70,12 +77,18 @@ const Login = () => {
 
           <div className="flex items-center justify-between text-sm mb-6">
             <label className="flex items-center text-gray-600">
-              <input type="checkbox" className="mr-2" /> Remember me
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={showPassword}
+                onChange={() => setShowPassword((prev) => !prev)} // Toggle show password
+              />
+              Show Password
             </label>
             <a href="/aboutus" className="text-gray-600 hover:underline">Forgot Password?</a>
           </div>
 
-          <button 
+          <button
             type="submit"
             className="w-full py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 text-sm font-semibold text-white shadow-md transition duration-200"
           >

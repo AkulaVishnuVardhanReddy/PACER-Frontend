@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -29,9 +30,15 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-white">Contact Us</h3>
             <ul className="mt-2 space-y-2">
-              <li className="text-sm">Email: info@justice.gov</li>
-              <li className="text-sm">Phone: +1 234 567 890</li>
-              <li className="text-sm">Address: 123 Justice St, Capital City</li>
+              <li className="text-sm flex items-center">
+                <FaEnvelope className="mr-2" /> info@justice.gov
+              </li>
+              <li className="text-sm flex items-center">
+                <FaPhone className="mr-2" /> +1 234 567 890
+              </li>
+              <li className="text-sm flex items-center">
+                <FaMapMarkerAlt className="mr-2" /> 123 Justice St, Capital City
+              </li>
             </ul>
           </div>
         </div>
@@ -39,16 +46,16 @@ const Footer = () => {
         {/* Social Media Section */}
         <div className="mt-8 flex justify-center space-x-4">
           <a href="#" className="hover:text-gray-400">
-            <i className="fab fa-facebook-f"></i> {/* Replace with your icon component */}
+            <FaFacebookF />
           </a>
           <a href="#" className="hover:text-gray-400">
-            <i className="fab fa-twitter"></i> {/* Replace with your icon component */}
+            <FaTwitter />
           </a>
           <a href="#" className="hover:text-gray-400">
-            <i className="fab fa-linkedin-in"></i> {/* Replace with your icon component */}
+            <FaLinkedinIn />
           </a>
           <a href="#" className="hover:text-gray-400">
-            <i className="fab fa-instagram"></i> {/* Replace with your icon component */}
+            <FaInstagram />
           </a>
         </div>
 
