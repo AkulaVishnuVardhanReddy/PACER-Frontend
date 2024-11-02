@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import takkeda from "../Assets/images/takkeda.png";
 import Logo from "../Assets/images/Logo.png";
-import { Logged } from "./API/APIContext"; // Direct named import
+import { Logged } from "./API/APIContext";
 import { FaUser, FaLock } from "react-icons/fa";
 
 const Login = () => {
   const [UserName, setUsername] = useState("");
   const [Password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State for showing password
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -31,14 +31,11 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen relative">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-center backdrop-blur-md"
         style={{
           backgroundImage: `url(${takkeda})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-700 opacity-75"></div>
       <div className="relative z-10 w-full max-w-xs p-8 bg-white bg-opacity-90 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-2xl">
         <div className="flex justify-center mb-4">
           <img src={Logo} alt="Logo" className="h-28 w-28" />
@@ -66,7 +63,7 @@ const Login = () => {
             <FaLock className="absolute left-3 top-3 text-gray-600" />
             <input
               className="w-full pl-10 py-3 bg-white text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 placeholder-gray-400"
-              type={showPassword ? "text" : "password"} // Toggle password visibility
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Password"
               value={Password}
@@ -81,7 +78,7 @@ const Login = () => {
                 type="checkbox"
                 className="mr-2"
                 checked={showPassword}
-                onChange={() => setShowPassword((prev) => !prev)} // Toggle show password
+                onChange={() => setShowPassword((prev) => !prev)}
               />
               Show Password
             </label>

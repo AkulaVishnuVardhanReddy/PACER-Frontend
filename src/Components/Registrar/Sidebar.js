@@ -11,12 +11,13 @@ const Sidebar = () => {
         <img src={Logo} alt="logo" className="h-24 w-24" />
       </div>
       <div>
-        <NavItem to="/add-account" icon={<FaUserPlus />} label="Add Accounts" />
-        <NavItem to="/remove-account" icon={<FaUserMinus />} label="Remove Accounts" />
-        <NavItem to="/create-court-case" icon={<FaPlusSquare />} label="Add Case" />
-        <NavItem to="/schedule-court-case" icon={<FaCalendarAlt />} label="Schedule Case" />
-        <NavItem to="/pending-court-cases" icon={<FaFolderOpen />} label="Pending Cases" />
-        <NavItem to="/resolved-court-cases" icon={<FaCheckCircle />} label="Resolved Cases" />
+        {/* Update links to be relative to the registrar route */}
+        <NavItem to="add-account" icon={<FaUserPlus />} label="Add Accounts" />
+        <NavItem to="remove-account" icon={<FaUserMinus />} label="Remove Accounts" />
+        <NavItem to="create-court-case" icon={<FaPlusSquare />} label="Add Case" />
+        <NavItem to="schedule-court-case" icon={<FaCalendarAlt />} label="Schedule Case" />
+        <NavItem to="pending-court-cases" icon={<FaFolderOpen />} label="Pending Cases" />
+        <NavItem to="resolved-court-cases" icon={<FaCheckCircle />} label="Resolved Cases" />
         <NavItem to="/logout" icon={<FaSignOutAlt />} label="Log Out" />
       </div>
     </div>

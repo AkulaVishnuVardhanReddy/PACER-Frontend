@@ -1,8 +1,8 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import Login from './Components/LoginForm';
 import Judge from './Components/Judge';
-import Register from './Components/Registrar';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Body from './Components/Body';
@@ -10,6 +10,15 @@ import AboutUs from './Components/AboutUs';
 import JudiciaryInfo from './Components/JudiciaryInfo';
 import ChiefJustice from './Components/ChiefJustice';
 import FormerJudges from './Components/FormerJudges';
+import MainLayout from './Components/Registrar/MainLayout';
+import ProtectedRoute from './Components/ProtectedRoute';
+import AddAccount from './Components/Registrar/AddAccount';
+import RemoveAccountForm from './Components/Registrar/RemoveAccount';
+import CreateCourtCase from './Components/Registrar/AddCourtCase';
+import ScheduleCourtCase from './Components/Registrar/ScheduleCase';
+import PendingCourtCases from './Components/Registrar/PendingCases';
+import ResolvedCourtCases from './Components/Registrar/ResolvedCases';
+
 
 const AppLayout = () => {
   return (
@@ -27,16 +36,24 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Body />} />
-          
-            <Route path="login" element={<Login />} />
-          
+          <Route path="login" element={<Login />} />
           <Route path="judge" element={<Judge />} />
-          <Route path="registrar" element={<Register />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="judiciaryinfo" element={<JudiciaryInfo />} />
           <Route path="chiefjustice" element={<ChiefJustice />} />
           <Route path="formerjudges" element={<FormerJudges />} />
+        </Route> 
+          {/* Protected Registrar Route with nested routes */}
+        <Route path="registrar/*" element={< MainLayout />}>
+          <Route path="add-account" element={<AddAccount />} />
+          <Route path="remove-account" element={<RemoveAccountForm />} />
+          <Route path="create-court-case" element={<CreateCourtCase />} />
+          <Route path="schedule-court-case" element={<ScheduleCourtCase />} />
+          <Route path="pending-court-cases" element={<PendingCourtCases />} />
+          <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
+          <Route index element={<ResolvedCourtCases />} /> {/* Default route */}
         </Route>
+        
       </Routes>
     </Router>
   );
