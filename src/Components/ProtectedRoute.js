@@ -3,7 +3,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component }) => {
-  const isAuthenticated = !!sessionStorage.getItem('authToken'); // Check for auth token
+  const isAuthenticated = !!sessionStorage.getItem('auth'); 
 
   return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 };

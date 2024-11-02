@@ -1,31 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { ResolvedCasesAPICall } from '../API/RegistrarAPI';
 
 const ResolvedCourtCases = () => {
   // Hardcoded resolved court cases
-  const resolvedCases = [
-    {
-      cin: 1,
-      startDate: '2023-01-15',
-      judgmentDate: '2023-03-01',
-      judgeName: 'Judge Wilson',
-      judgmentSummary: 'The defendant is found guilty and sentenced to 2 years in prison.'
-    },
-    {
-      cin: 2,
-      startDate: '2023-02-20',
-      judgmentDate: '2023-04-15',
-      judgeName: 'Judge Adams',
-      judgmentSummary: 'The defendant is acquitted due to lack of evidence.'
-    },
-    {
-      cin: 3,
-      startDate: '2023-03-10',
-      judgmentDate: '2023-05-30',
-      judgeName: 'Judge Roberts',
-      judgmentSummary: 'The defendant is sentenced to community service and probation.'
-    }
-  ];
+  const [resolvedCases, setResolvedCases] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
+  useEffect(() => {
+    const fetchresolvedCases = async () => {
+      try {
+        const cases = await ResolvedCasesAPICall(); // Fetch the pending cases
+        if (Array.isArray(cases.data)) {
+          setResolvedCases(cases.data); // Update state with fetched data
+        } else {
+          console.error("Expected an array but received:", cases);
+        }
+      } catch (error) {
+        console.error("Error fetching pending cases:", error); // Handle error
+      } finally {
+        setLoading(false); // Set loading to false
+      }
+    };
+
+    fetchresolvedCases(); // Call the fetch function
+  }, []); // Empty dependency array for on mount
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading indicator
+  }
+
+  if (resolvedCases.length === 0) {
+    return <div>No pending court cases available.</div>; // Handle no cases found
+  }
   return (
     <div className="mx-auto p-8 bg-white shadow-lg rounded-lg max-w-3xl">
       <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Resolved Court Cases</h2>
@@ -34,9 +40,9 @@ const ResolvedCourtCases = () => {
           <tr>
             <th className="p-4 border-b border-gray-300">Start Date</th>
             <th className="p-4 border-b border-gray-300">CIN</th>
-            <th className="p-4 border-b border-gray-300">Judgment Date</th>
+            <th className="p-4 border-b border-gray-300">Completion Date</th>
             <th className="p-4 border-b border-gray-300">Judge Name</th>
-            <th className="p-4 border-b border-gray-300">Judgment Summary</th>
+            <th className="p-4 border-b border-gray-300">Court Name</th>
           </tr>
         </thead>
         <tbody>
@@ -44,9 +50,9 @@ const ResolvedCourtCases = () => {
             <tr key={courtCase.cin} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
               <td className="p-4 border-b border-gray-300">{courtCase.startDate}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.cin}</td>
-              <td className="p-4 border-b border-gray-300">{courtCase.judgmentDate}</td>
+              <td className="p-4 border-b border-gray-300">{courtCase.expectedCompletionDate}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.judgeName}</td>
-              <td className="p-4 border-b border-gray-300">{courtCase.judgmentSummary}</td>
+              <td className="p-4 border-b border-gray-300">{courtCase.courtName}</td>
             </tr>
           ))}
         </tbody>

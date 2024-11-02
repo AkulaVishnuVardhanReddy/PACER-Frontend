@@ -44,14 +44,14 @@ const App = () => {
           <Route path="formerjudges" element={<FormerJudges />} />
         </Route> 
           {/* Protected Registrar Route with nested routes */}
-        <Route path="registrar/*" element={< MainLayout />}>
+        <Route path="registrar/*" element={<ProtectedRoute component={MainLayout} />}>
           <Route path="add-account" element={<AddAccount />} />
           <Route path="remove-account" element={<RemoveAccountForm />} />
           <Route path="create-court-case" element={<CreateCourtCase />} />
           <Route path="schedule-court-case" element={<ScheduleCourtCase />} />
           <Route path="pending-court-cases" element={<PendingCourtCases />} />
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
-          <Route index element={<ResolvedCourtCases />} /> {/* Default route */}
+          <Route index element={<AddAccount />} /> 
         </Route>
         
       </Routes>

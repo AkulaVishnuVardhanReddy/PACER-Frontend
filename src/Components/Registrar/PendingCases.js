@@ -1,42 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { PendingCasesAPICall } from '../API/RegistrarAPI';
 
 const PendingCourtCases = () => {
-  // Hardcoded pending court cases
-  const pendingCases = [
-    {
-      cin: 1,
-      startDate: '2024-01-15',
-      defendantName: 'John Doe',
-      defendantAddress: '123 Elm Street',
-      crimeType: 'Theft',
-      crimeLocation: 'Downtown Mall',
-      lawyerName: 'Jane Smith',
-      publicProsecutorName: 'Tom Brown',
-      judgeName: 'Judge Wilson'
-    },
-    {
-      cin: 2,
-      startDate: '2024-02-20',
-      defendantName: 'Alice Johnson',
-      defendantAddress: '456 Maple Avenue',
-      crimeType: 'Assault',
-      crimeLocation: 'Main Street',
-      lawyerName: 'Sarah Davis',
-      publicProsecutorName: 'Mike Johnson',
-      judgeName: 'Judge Adams'
-    },
-    {
-      cin: 3,
-      startDate: '2024-03-10',
-      defendantName: 'Michael Smith',
-      defendantAddress: '789 Oak Road',
-      crimeType: 'Fraud',
-      crimeLocation: 'City Bank',
-      lawyerName: 'Chris Lee',
-      publicProsecutorName: 'Emily White',
-      judgeName: 'Judge Roberts'
-    }
-  ];
+  const [pendingCases, setPendingCases] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+
+  useEffect(() => {
+    const fetchPendingCases = async () => {
+      try {
+        const cases = await PendingCasesAPICall(); // Fetch the pending cases
+        if (Array.isArray(cases.data)) {
+          setPendingCases(cases.data); // Update state with fetched data
+        } else {
+          console.error("Expected an array but received:", cases);
+        }
+      } catch (error) {
+        console.error("Error fetching pending cases:", error); // Handle error
+      } finally {
+        setLoading(false); // Set loading to false
+      }
+    };
+
+    fetchPendingCases(); // Call the fetch function
+  }, []); // Empty dependency array for on mount
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading indicator
+  }
+
+  if (pendingCases.length === 0) {
+    return <div>No pending court cases available.</div>; // Handle no cases found
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg">
@@ -60,8 +54,8 @@ const PendingCourtCases = () => {
             <tr key={courtCase.cin} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
               <td className="p-4 border-b border-gray-300">{courtCase.cin}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.startDate}</td>
-              <td className="p-4 border-b border-gray-300">{courtCase.defendantName}</td>
-              <td className="p-4 border-b border-gray-300">{courtCase.defendantAddress}</td>
+              <td className="p-4 border-b border-gray-300">{courtCase.defendentName}</td>
+              <td className="p-4 border-b border-gray-300">{courtCase.defendentAddress}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.crimeType}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.crimeLocation}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.lawyerName}</td>

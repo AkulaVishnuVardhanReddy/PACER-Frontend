@@ -3,8 +3,8 @@ import { CreateCaseAPICall } from '../API/RegistrarAPI';
 
 const CreateCourtCase = () => {
   const [formData, setFormData] = useState({
-    defendantName: '',
-    defendantAddress: '',
+    defendentName: '',
+    defendentAddress: '',
     crimeType: '',
     crimeDate: '',
     crimeLocation: '',
@@ -47,8 +47,8 @@ const CreateCourtCase = () => {
           <label className="block text-gray-700 font-medium mb-2">Defendant Name</label>
           <input
             type="text"
-            name="defendantName"
-            value={formData.defendantName}
+            name="defendentName"
+            value={formData.defendentName}
             onChange={handleChange}
             placeholder="Defendant Name"
             required
@@ -59,8 +59,8 @@ const CreateCourtCase = () => {
           <label className="block text-gray-700 font-medium mb-2">Defendant Address</label>
           <input
             type="text"
-            name="defendantAddress"
-            value={formData.defendantAddress}
+            name="defendentAddress"
+            value={formData.defendentAddress}
             onChange={handleChange}
             placeholder="Defendant Address"
             required
