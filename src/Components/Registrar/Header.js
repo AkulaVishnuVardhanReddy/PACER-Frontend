@@ -16,7 +16,7 @@ const Header = () => {
       </div>
       <div className="flex items-center space-x-3">
         <div className="flex flex-col items-end">
-          <span className="text-gray-800 font-semibold text-lg">{user.name}</span>
+          <span className="text-gray-800 font-semibold text-lg">{sessionStorage.getItem("name")}</span>
           <span className="text-gray-500 text-sm">{user.description}</span>
         </div>
         <img

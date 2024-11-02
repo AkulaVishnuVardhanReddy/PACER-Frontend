@@ -9,7 +9,9 @@ const AddAccount = () => {
     emailId: '',
     phoneNo: '',
     photo: null,
-    role: '',
+    role: {
+      id:1
+    },
     username: '',
     password: '',
     questionAns1: '',
@@ -17,23 +19,39 @@ const AddAccount = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'file' ? files[0] : value,
-    });
-  };
+    const { name, value } = e.target;
+
+    // Handle nested objects like "role.id"
+    if (name.includes('.')) {
+        const [mainKey, subKey] = name.split('.');
+        setFormData({
+            ...formData,
+            [mainKey]: {
+                ...formData[mainKey],
+                [subKey]: value
+            }
+        });
+    } else {
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    }
+};
+
 
   async function addAccount(formData) {
     try {
+      console.log(formData);
+      const auth = sessionStorage.getItem("auth");
       const response = await apiClient.post(
         '/registrar/users',
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          credentials: 'include',
+            'Authorization': `Basic ${auth}`,  // Updated key
+            'Content-Type': 'application/json',
+          }
         }
       );
 
@@ -46,7 +64,7 @@ const AddAccount = () => {
       console.error("Failed to add account:", error);
       return null;
     }
-  }
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();

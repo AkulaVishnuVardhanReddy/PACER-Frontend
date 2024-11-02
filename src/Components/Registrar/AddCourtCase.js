@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { apiClient } from "../API/APIClient";
+import { CreateCaseAPICall } from '../API/RegistrarAPI';
 
 const CreateCourtCase = () => {
   const [formData, setFormData] = useState({
@@ -27,30 +27,9 @@ const CreateCourtCase = () => {
     });
   };
 
-  async function createCourtCase(formData) {
-    try {
-      const response = await apiClient.post(
-        '/courtcases',
-        formData,
-        { credentials: 'include' }
-      );
-
-      if (response.status === 200) {
-        console.log('Court case created successfully:', response.data);
-      }
-
-      return response.data;
-    } catch (error) {
-      console.error("Failed to create court case:", error);
-      return null;
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const result = await createCourtCase(formData);
-
+    const result = await CreateCaseAPICall(formData);
     if (result) {
       console.log("Court case creation successful");
     } else {
@@ -61,7 +40,7 @@ const CreateCourtCase = () => {
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl mx-auto mb-4 p-8 bg-white shadow-lg rounded-lg">
       <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Create Court Case</h2>
-
+      
       {/* Two-column grid for specific fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
