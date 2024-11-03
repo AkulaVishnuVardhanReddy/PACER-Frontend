@@ -2,36 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { ResolvedCasesAPICall } from '../API/RegistrarAPI';
 
 const ResolvedCourtCases = () => {
-  // Hardcoded resolved court cases
   const [resolvedCases, setResolvedCases] = useState([]); 
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    const fetchresolvedCases = async () => {
+    const fetchResolvedCases = async () => {
       try {
-        const cases = await ResolvedCasesAPICall(); // Fetch the pending cases
-        if (Array.isArray(cases.data)) {
-          setResolvedCases(cases.data); // Update state with fetched data
-        } else {
-          console.error("Expected an array but received:", cases);
-        }
+        const cases = await ResolvedCasesAPICall();
+        if (Array.isArray(cases.data)) setResolvedCases(cases.data);
+        else console.error("Expected an array but received:", cases);
       } catch (error) {
-        console.error("Error fetching pending cases:", error); // Handle error
+        console.error("Error fetching resolved cases:", error);
       } finally {
-        setLoading(false); // Set loading to false
+        setLoading(false);
       }
     };
+    fetchResolvedCases();
+  }, []);
 
-    fetchresolvedCases(); // Call the fetch function
-  }, []); // Empty dependency array for on mount
+  if (loading) return <div>Loading...</div>;
+  if (resolvedCases.length === 0) return <div>No resolved court cases available.</div>;
 
-  if (loading) {
-    return <div>Loading...</div>; // Loading indicator
-  }
-
-  if (resolvedCases.length === 0) {
-    return <div>No pending court cases available.</div>; // Handle no cases found
-  }
   return (
     <div className="mx-auto p-8 bg-white shadow-lg rounded-lg max-w-3xl">
       <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Resolved Court Cases</h2>

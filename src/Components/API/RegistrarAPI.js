@@ -1,75 +1,32 @@
-import { Navigate } from "react-router-dom";
 import { apiClient } from "./APIClient";
 
-export async function CreateCaseAPICall (formData){
-    const auth = sessionStorage.getItem("auth");
-    const response = await apiClient.post(
-        '/registrar/court-cases',
-        formData,
-        {   
-          headers: {
-            'Authorization': `Basic ${auth}`, 
-            'Content-Type': 'application/json',
-          }
-        }
-    );
+const authHeaders = () => ({
+  'Authorization': `Basic ${sessionStorage.getItem("auth")}`,
+  'Content-Type': 'application/json'
+});
+
+const postRequest = async (url, data) => {
+  try {
+    const response = await apiClient.post(url, data, { headers: authHeaders() });
     return response;
-}
+  } catch (error) {
+    console.error(`Error in POST request to ${url}:`, error);
+    throw error;
+  }
+};
 
-export async function AddAccountAPICall (formData){
-  const auth = sessionStorage.getItem("auth");
-  const response = await apiClient.post(
-      '/registrar/users',
-      formData,
-      {   
-        headers: {
-          'Authorization': `Basic ${auth}`, 
-          'Content-Type': 'application/json',
-        }
-      }
-  );
-  return response;
-}
-
-export async function ScheduleCourtCaseAPICall (formData){
-  const auth = sessionStorage.getItem("auth");
-  const response = await apiClient.post(
-      '/registrar/cases/hearing',
-      formData,
-      {   
-        headers: {
-          'Authorization': `Basic ${auth}`, 
-          'Content-Type': 'application/json',
-        }
-      }
-  );
-  return response;
-}
-
-export async function PendingCasesAPICall (){
-    const auth = sessionStorage.getItem("auth");
-    const response = await apiClient.get(
-        '/registrar/court-cases/status/pending',
-        {   
-          headers: {
-            'Authorization': `Basic ${auth}`
-          }
-        }
-    );
-    console.log(response);
+const getRequest = async (url) => {
+  try {
+    const response = await apiClient.get(url, { headers: authHeaders() });
     return response;
-}
+  } catch (error) {
+    console.error(`Error in GET request to ${url}:`, error);
+    throw error;
+  }
+};
 
-export async function ResolvedCasesAPICall (){
-    const auth = sessionStorage.getItem("auth");
-    const response = await apiClient.get(
-        '/registrar/court-cases/status/resolved',
-        {   
-          headers: {
-            'Authorization': `Basic ${auth}`
-          }
-        }
-    );
-    console.log(response);
-    return response;
-}
+export const CreateCaseAPICall = (formData) => postRequest('/registrar/court-cases', formData);
+export const AddAccountAPICall = (formData) => postRequest('/registrar/users', formData);
+export const ScheduleCourtCaseAPICall = (formData) => postRequest('/registrar/cases/hearing', formData);
+export const PendingCasesAPICall = () => getRequest('/registrar/court-cases/status/pending');
+export const ResolvedCasesAPICall = () => getRequest('/registrar/court-cases/status/resolved');

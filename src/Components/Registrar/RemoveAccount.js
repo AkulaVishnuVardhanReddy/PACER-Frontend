@@ -8,23 +8,19 @@ const RemoveAccountForm = () => {
 
     const handleRemoveAccount = async (e) => {
         e.preventDefault();
-        setMessage('');
+        setMessage(confirmation ? '' : 'Please confirm that you want to delete the account.');
 
-        if (!confirmation) {
-            setMessage('Please confirm that you want to delete the account.');
-            return;
-        }
+        if (!confirmation) return;
 
         try {
             const response = await axios.delete(`/users/${userId}`);
             if (response.status === 200) {
                 setMessage('Account successfully deleted.');
-                setUserId(''); // Clear user ID after successful deletion
-                setConfirmation(false); // Reset confirmation checkbox
+                setUserId('');
+                setConfirmation(false);
             }
-        } catch (error) {
+        } catch {
             setMessage('Error: Could not delete the account');
-            console.error(error);
         }
     };
 
@@ -40,7 +36,6 @@ const RemoveAccountForm = () => {
                     className="p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-colors duration-200"
                     required
                 />
-
                 <div className="flex items-center">
                     <input
                         type="checkbox"
@@ -50,7 +45,6 @@ const RemoveAccountForm = () => {
                     />
                     <label className="text-sm text-gray-700">Confirm account deletion</label>
                 </div>
-
                 <button type="submit" className="w-full px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-colors duration-200">
                     Remove Account
                 </button>
