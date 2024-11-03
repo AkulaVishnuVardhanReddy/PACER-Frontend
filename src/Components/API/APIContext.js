@@ -21,6 +21,7 @@ export async function Logged(Username, Password) {
             const auth = btoa(`${Username}:${Password}`);
             sessionStorage.setItem("auth",auth);
             sessionStorage.setItem("name",response.data.name);
+            sessionStorage.setItem("role",response.data.role);
             console.log(sessionStorage.getItem("auth"));
             console.log(sessionStorage.getItem("name"));
         }

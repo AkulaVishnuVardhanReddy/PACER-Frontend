@@ -4,7 +4,7 @@ import { apiClient } from "./APIClient";
 export async function CreateCaseAPICall (formData){
     const auth = sessionStorage.getItem("auth");
     const response = await apiClient.post(
-        '/court-cases',
+        '/registrar/court-cases',
         formData,
         {   
           headers: {
@@ -14,6 +14,36 @@ export async function CreateCaseAPICall (formData){
         }
     );
     return response;
+}
+
+export async function AddAccountAPICall (formData){
+  const auth = sessionStorage.getItem("auth");
+  const response = await apiClient.post(
+      '/registrar/users',
+      formData,
+      {   
+        headers: {
+          'Authorization': `Basic ${auth}`, 
+          'Content-Type': 'application/json',
+        }
+      }
+  );
+  return response;
+}
+
+export async function ScheduleCourtCaseAPICall (formData){
+  const auth = sessionStorage.getItem("auth");
+  const response = await apiClient.post(
+      '/registrar/cases/hearing',
+      formData,
+      {   
+        headers: {
+          'Authorization': `Basic ${auth}`, 
+          'Content-Type': 'application/json',
+        }
+      }
+  );
+  return response;
 }
 
 export async function PendingCasesAPICall (){

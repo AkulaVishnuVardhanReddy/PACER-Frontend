@@ -1,96 +1,74 @@
-import React, { useState } from 'react';
-import { apiClient } from "../API/APIClient";
+import React, { useState } from "react";
+import { AddAccountAPICall } from "../API/RegistrarAPI";
 
 const AddAccount = () => {
+  const[created,setCreated] = useState(false);
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    emailId: '',
-    phoneNo: '',
+    firstName: "",
+    lastName: "",
+    dob: "",
+    emailId: "",
+    phoneNo: "",
     photo: null,
     role: {
-      id:1
+      id: "",
     },
-    username: '',
-    password: '',
-    questionAns1: '',
-    questionAns2: '',
+    username: "",
+    password: "",
+    questionAns1: "",
+    questionAns2: "",
   });
+  
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Handle nested objects like "role.id"
-    if (name.includes('.')) {
-        const [mainKey, subKey] = name.split('.');
-        setFormData({
-            ...formData,
-            [mainKey]: {
-                ...formData[mainKey],
-                [subKey]: value
-            }
-        });
+    if (name.includes(".")) {
+      // Handle nested object like "role.id"
+      const [mainKey, subKey] = name.split(".");
+      setFormData((prevData) => ({
+        ...prevData,
+        [mainKey]: {
+          ...prevData[mainKey],
+          [subKey]: value,
+        },
+      }));
     } else {
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
     }
-};
-
-
-  async function addAccount(formData) {
-    try {
-      console.log(formData);
-      const auth = sessionStorage.getItem("auth");
-      const response = await apiClient.post(
-        '/registrar/users',
-        formData,
-        {
-          headers: {
-            'Authorization': `Basic ${auth}`,  // Updated key
-            'Content-Type': 'application/json',
-          }
-        }
-      );
-
-      if (response.status === 200) {
-        console.log('Account added successfully:', response.data);
-      }
-
-      return response.data;
-    } catch (error) {
-      console.error("Failed to add account:", error);
-      return null;
-    }
-}
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formDataToSubmit = new FormData();
-    for (const key in formData) {
-      formDataToSubmit.append(key, formData[key]);
-    }
-
-    const result = await addAccount(formDataToSubmit);
-
+    const result = await AddAccountAPICall(formData);
     if (result) {
-      console.log("Account creation successful");
+      setMessage("Account created successfully!");
+      setCreated(true);
     } else {
-      console.error("Account creation failed");
+      setMessage("Failed to create Account!");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto mb-4 p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">User Registration</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-3xl mx-auto mb-4 p-8 bg-white shadow-lg rounded-lg"
+    >
+      <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">
+        User Registration
+      </h2>
 
       {/* Two-column grid for specific fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
-          <label className="block text-gray-700 font-medium mb-2">First Name</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            First Name
+          </label>
           <input
             type="text"
             name="firstName"
@@ -102,7 +80,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Last Name</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Last Name
+          </label>
           <input
             type="text"
             name="lastName"
@@ -114,7 +94,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Username</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Username
+          </label>
           <input
             type="text"
             name="username"
@@ -126,7 +108,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Password</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Password
+          </label>
           <input
             type="password"
             name="password"
@@ -142,7 +126,9 @@ const AddAccount = () => {
       {/* Single-column layout for remaining fields */}
       <div className="space-y-6">
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Date of Birth</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Date of Birth
+          </label>
           <input
             type="date"
             name="dob"
@@ -153,7 +139,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Email ID</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Email ID
+          </label>
           <input
             type="email"
             name="emailId"
@@ -165,7 +153,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Phone Number
+          </label>
           <input
             type="tel"
             name="phoneNo"
@@ -177,33 +167,28 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Profile Photo</label>
-          <input
-            type="file"
-            name="photo"
-            onChange={handleChange}
-            accept="image/*"
-            className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 font-medium mb-2">Role ID</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Role ID
+          </label>
           <input
             type="text"
-            name="role"
-            value={formData.role}
+            name="role.id"
+            value={formData.role.id}
             onChange={handleChange}
-            placeholder="Role ID"
+            placeholder="1-Registrar  2-Judge   3-Lawyer"
             required
             className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
           />
         </div>
       </div>
+      
 
       {/* Two-column layout for Security Questions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
         <div>
-          <label className="block text-gray-700 font-medium mb-2">What is your Primary School</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            What is your Primary School
+          </label>
           <input
             type="text"
             name="questionAns1"
@@ -215,7 +200,9 @@ const AddAccount = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 font-medium mb-2">Your Best Friend</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Your Best Friend
+          </label>
           <input
             type="text"
             name="questionAns2"
@@ -228,11 +215,22 @@ const AddAccount = () => {
         </div>
       </div>
 
-      <button type="submit" className="w-full mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-lg hover:from-indigo-600 hover:to-purple-700 shadow-lg transform transition-all duration-200 hover:scale-105">
+      <button
+        type="submit"
+        className="w-full mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-lg hover:from-indigo-600 hover:to-purple-700 shadow-lg transform transition-all duration-200 hover:scale-105"
+      >
         Create Account
       </button>
+      {message && (
+        <div
+          className={`text-center font-semibold mb-1 mt-4 ${
+            created ? "text-green-500" : "text-red-500"
+          }`}
+        >
+          {message}
+        </div>
+      )}
     </form>
-    
   );
 };
 

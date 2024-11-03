@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex max-h-screen">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header className="fixed top-0 left-64 w-full z-10" /> {/* Fix Header */}

@@ -33,7 +33,7 @@ const PendingCourtCases = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <div className="max-w-3xl mx-auto p-4 mb-4 mt-4 bg-white shadow-lg rounded-lg">
       <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Pending Court Cases</h2>
       <table className="min-w-full border-collapse">
         <thead className="bg-indigo-400 text-white">
@@ -41,7 +41,6 @@ const PendingCourtCases = () => {
             <th className="p-4 border-b border-gray-300">CIN</th>
             <th className="p-4 border-b border-gray-300">Start Date</th>
             <th className="p-4 border-b border-gray-300">Defendant Name</th>
-            <th className="p-4 border-b border-gray-300">Address</th>
             <th className="p-4 border-b border-gray-300">Crime Type</th>
             <th className="p-4 border-b border-gray-300">Crime Location</th>
             <th className="p-4 border-b border-gray-300">Lawyer</th>
@@ -55,7 +54,6 @@ const PendingCourtCases = () => {
               <td className="p-4 border-b border-gray-300">{courtCase.cin}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.startDate}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.defendentName}</td>
-              <td className="p-4 border-b border-gray-300">{courtCase.defendentAddress}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.crimeType}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.crimeLocation}</td>
               <td className="p-4 border-b border-gray-300">{courtCase.lawyerName}</td>

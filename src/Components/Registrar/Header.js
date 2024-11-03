@@ -1,13 +1,8 @@
 // Header.js
 import React from 'react';
+import ProfileLogo from '../../Assets/images/ProfileLogo.png'
 
 const Header = () => {
-  // Sample user data
-  const user = {
-    name: "John Doe",
-    description: "Project Manager",
-    photoUrl: "https://via.placeholder.com/40", // Replace with actual user photo URL
-  };
 
   return (
     <div className="flex justify-between items-center p-4">
@@ -17,10 +12,10 @@ const Header = () => {
       <div className="flex items-center space-x-3">
         <div className="flex flex-col items-end">
           <span className="text-gray-800 font-semibold text-lg">{sessionStorage.getItem("name")}</span>
-          <span className="text-gray-500 text-sm">{user.description}</span>
+          <span className="text-gray-500 text-xs">{sessionStorage.getItem("role")}</span>
         </div>
         <img
-          src={user.photoUrl}
+          src={ProfileLogo}
           alt="User"
           className="rounded-full h-12 w-12 border-2 border-gray-300 shadow-sm"
         />

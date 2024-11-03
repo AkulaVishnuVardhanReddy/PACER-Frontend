@@ -2,11 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Logo from "../../Assets/images/Logo.png";
-import { FaUserPlus, FaSignOutAlt, FaUserMinus, FaFolderOpen, FaCheckCircle, FaCalendarAlt, FaPlusSquare } from 'react-icons/fa';
+import { FaUserPlus, FaSignOutAlt, FaUserMinus, FaFolderOpen, FaCheckCircle, FaCalendarAlt, FaPlusSquare,  FaClock } from 'react-icons/fa';
 
 const Sidebar = () => {
   return (
-    <div className="bg-indigo-800 w-64 p-6 m-4 rounded-2xl shadow-lg flex flex-col text-white">
+    <div className="bg-indigo-800 w-64 p-6 m-4 rounded-2xl shadow-lg flex flex-col text-white overflow-y-auto">
       <div className="flex justify-center mb-2">
         <img src={Logo} alt="logo" className="h-24 w-24" />
       </div>
@@ -16,6 +16,7 @@ const Sidebar = () => {
         <NavItem to="remove-account" icon={<FaUserMinus />} label="Remove Accounts" />
         <NavItem to="create-court-case" icon={<FaPlusSquare />} label="Add Case" />
         <NavItem to="schedule-court-case" icon={<FaCalendarAlt />} label="Schedule Case" />
+        <NavItem to="user-history" icon={<FaClock />} label="User History" />
         <NavItem to="pending-court-cases" icon={<FaFolderOpen />} label="Pending Cases" />
         <NavItem to="resolved-court-cases" icon={<FaCheckCircle />} label="Resolved Cases" />
         <NavItem to="/" icon={<FaSignOutAlt />} label="Log Out" />

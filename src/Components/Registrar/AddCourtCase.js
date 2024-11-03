@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { CreateCaseAPICall } from '../API/RegistrarAPI';
 
 const CreateCourtCase = () => {
+  const[created,setCreated] = useState(false);
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     defendentName: '',
     defendentAddress: '',
@@ -31,9 +33,10 @@ const CreateCourtCase = () => {
     e.preventDefault();
     const result = await CreateCaseAPICall(formData);
     if (result) {
-      console.log("Court case creation successful");
+      setMessage("Court Case Added!");
+      setCreated(true);
     } else {
-      console.error("Court case creation failed");
+      setMessage("Failed to Add Case!");
     }
   };
 
@@ -216,6 +219,15 @@ const CreateCourtCase = () => {
       <button type="submit" className="w-full mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-lg hover:from-indigo-600 hover:to-purple-700 shadow-lg transform transition-all duration-200 hover:scale-105">
         Create Court Case
       </button>
+      {message && (
+        <div
+          className={`text-center font-semibold mb-1 mt-4 ${
+            created ? "text-green-500" : "text-red-500"
+          }`}
+        >
+          {message}
+        </div>
+      )}
     </form>
   );
 };
