@@ -1,17 +1,19 @@
 import React from 'react';
 import ProfileLogo from '../../Assets/images/ProfileLogo.png';
 
-const Header = () => (
+const Header = () => {
+  const role = sessionStorage.getItem("role").split("_")[1];
+  return( 
   <div className="flex justify-between items-center p-4">
     <h2 className="text-3xl font-bold text-gray-800 font-mono">Dashboard</h2>
     <div className="flex items-center space-x-3">
       <div className="text-right">
         <span className="text-gray-800 font-semibold text-lg">{sessionStorage.getItem("name")}</span>
-        <span className="text-gray-500 text-xs block">{sessionStorage.getItem("role")}</span>
+        <span className="text-gray-500 text-xs block">{role}</span>
       </div>
       <img src={ProfileLogo} alt="User" className="rounded-full h-12 w-12 border-2 border-gray-300 shadow-sm" />
     </div>
   </div>
-);
+)};
 
 export default Header;

@@ -37,14 +37,14 @@ const App = () => {
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Body />} />
           <Route path="login" element={<Login />} />
-          <Route path="judge" element={<Judge />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="judiciaryinfo" element={<JudiciaryInfo />} />
           <Route path="chiefjustice" element={<ChiefJustice />} />
           <Route path="formerjudges" element={<FormerJudges />} />
         </Route> 
-          {/* Protected Registrar Route with nested routes */}
-        <Route path="registrar/*" element={<ProtectedRoute component={MainLayout} />}>
+
+
+        <Route path="registrar/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_REGISTRAR"/>}>
           <Route path="add-account" element={<AddAccount />} />
           <Route path="remove-account" element={<RemoveAccountForm />} />
           <Route path="create-court-case" element={<CreateCourtCase />} />
@@ -52,6 +52,11 @@ const App = () => {
           <Route path="pending-court-cases" element={<PendingCourtCases />} />
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
           <Route index element={<AddAccount />} /> 
+        </Route>
+
+
+        <Route path="judge/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_JUDGE"/>}>
+          <Route index element={<Judge />} /> 
         </Route>
         
       </Routes>
