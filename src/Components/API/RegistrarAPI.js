@@ -30,3 +30,4 @@ export const AddAccountAPICall = (formData) => postRequest('/registrar/users', f
 export const ScheduleCourtCaseAPICall = (formData) => postRequest('/registrar/cases/hearing', formData);
 export const PendingCasesAPICall = () => getRequest('/registrar/court-cases/status/pending');
 export const ResolvedCasesAPICall = () => getRequest('/registrar/court-cases/status/resolved');
+export const loginHistoryAPICall = (userid) => getRequest(`/registrar/login-history/${userid}`);

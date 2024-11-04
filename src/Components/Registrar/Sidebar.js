@@ -25,7 +25,7 @@ const Sidebar = () => {
     { to: "remove-account", icon: <FaUserMinus />, label: "Remove Accounts" },
     { to: "create-court-case", icon: <FaPlusSquare />, label: "Add Case" },
     { to: "schedule-court-case", icon: <FaCalendarAlt />, label: "Schedule Case" },
-    { to: "user-history", icon: <FaClock />, label: "User History" },
+    { to: "login-history", icon: <FaClock />, label: "Login History" },
     { to: "pending-court-cases", icon: <FaFolderOpen />, label: "Pending Cases" },
     { to: "resolved-court-cases", icon: <FaCheckCircle />, label: "Resolved Cases" },
     { to: "/", icon: <FaSignOutAlt />, label: "Log Out", onClick: () => handleLogout() }

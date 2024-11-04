@@ -18,6 +18,7 @@ import CreateCourtCase from './Components/Registrar/AddCourtCase';
 import ScheduleCourtCase from './Components/Registrar/ScheduleCase';
 import PendingCourtCases from './Components/Registrar/PendingCases';
 import ResolvedCourtCases from './Components/Registrar/ResolvedCases';
+import LoginHistory from './Components/Registrar/LoginHistory';
 
 
 const AppLayout = () => {
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="schedule-court-case" element={<ScheduleCourtCase />} />
           <Route path="pending-court-cases" element={<PendingCourtCases />} />
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
+          <Route path="login-history" element={<LoginHistory />} />
           <Route index element={<AddAccount />} /> 
         </Route>
 
