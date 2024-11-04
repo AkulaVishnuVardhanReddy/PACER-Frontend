@@ -63,6 +63,10 @@ const App = () => {
           <Route index element={<Judge />} /> 
         </Route>
         
+        <Route path="lawyer/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_JUDGE"/>}>
+          <Route index element={<Judge />} /> 
+        </Route>
+
       </Routes>
     </Router>
   );
