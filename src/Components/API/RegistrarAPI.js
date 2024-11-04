@@ -31,3 +31,4 @@ export const ScheduleCourtCaseAPICall = (formData) => postRequest('/registrar/ca
 export const PendingCasesAPICall = () => getRequest('/registrar/court-cases/status/pending');
 export const ResolvedCasesAPICall = () => getRequest('/registrar/court-cases/status/resolved');
 export const loginHistoryAPICall = (userid) => getRequest(`/registrar/login-history/${userid}`);
+export const caseAccessHistoryAPICall = (cin) => getRequest(`/registrar/case-history/${cin}`);
