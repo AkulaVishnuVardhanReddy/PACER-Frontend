@@ -1,4 +1,6 @@
+import { getCurrentDateTime } from "../Services/DateTIme";
 import { apiClient } from "./APIClient";
+import { getUseridByUserName } from "./PublicAPICalls";
 
 export async function Logged(Username, Password) {
     try {
@@ -12,6 +14,12 @@ export async function Logged(Username, Password) {
             sessionStorage.setItem("auth",auth);
             sessionStorage.setItem("name",response.data.name);
             sessionStorage.setItem("role",response.data.role);
+            const userId = async () => {
+                const id = await getUseridByUserName(response.data.name);
+                sessionStorage.setItem("userId",id.data);
+            };
+            userId();
+            sessionStorage.setItem("loginTime",getCurrentDateTime());
         }
         return response.data;
     } catch (error) {

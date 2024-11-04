@@ -2,7 +2,22 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        shimmer: 'shimmer 1.5s infinite linear',
+        pulse: 'pulse 2s infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        pulse: {
+          '0%, 100%': { opacity: 0.7 },
+          '50%': { opacity: 1 },
+        },
+      },
+    },
   },
   plugins: [
     function ({ addUtilities }) {

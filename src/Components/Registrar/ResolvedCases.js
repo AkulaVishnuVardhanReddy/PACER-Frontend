@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ResolvedCasesAPICall } from '../API/RegistrarAPI';
+import ShimmerEffect from './Shimmar';
 
 const ResolvedCourtCases = () => {
   const [resolvedCases, setResolvedCases] = useState([]); 
@@ -20,7 +21,7 @@ const ResolvedCourtCases = () => {
     fetchResolvedCases();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <ShimmerEffect/>;
   if (resolvedCases.length === 0) return <div>No resolved court cases available.</div>;
 
   return (

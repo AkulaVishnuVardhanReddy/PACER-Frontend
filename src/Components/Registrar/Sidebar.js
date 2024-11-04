@@ -12,15 +12,26 @@ import {
   FaPlusSquare,
   FaClock,
 } from "react-icons/fa";
+import { addLoginHistoryAPICall } from "../API/PublicAPICalls";
+import { logoutService } from "../Services/LogoutService";
+
+
+const callLogout =  async(loginHistory) => {
+  
+  await addLoginHistoryAPICall(loginHistory);
+  
+};
 
 const Sidebar = () => {
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    sessionStorage.clear();
-    navigate("/login");
+  const handleLogout = async () => {
+    const loginHistory = logoutService(); 
+    console.log(loginHistory); 
+    await callLogout(loginHistory); 
+    sessionStorage.clear(); 
+    navigate("/"); 
   };
-
+  
   const NavItem = ({ icon, label, to, onClick }) => (
     <Link to={to} onClick={onClick}>
       <div className="flex items-center space-x-3 p-3 rounded-lg transition duration-200 ease-in-out hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 cursor-pointer">

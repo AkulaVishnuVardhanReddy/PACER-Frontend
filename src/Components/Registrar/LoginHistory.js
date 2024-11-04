@@ -55,7 +55,7 @@ const LoginHistory = () => {
         </thead>
         <tbody>
           {loginHistory.map((history, index) => (
-            <tr key={history.cin} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
+            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
               <td className="p-4 border-b border-gray-300">{history.user.id}</td>
               <td className="p-4 border-b border-gray-300">{history.user.firstName} {history.user.lastName}</td>
               <td className="p-4 border-b border-gray-300">{history.user.role.name.split("_")[1]}</td>

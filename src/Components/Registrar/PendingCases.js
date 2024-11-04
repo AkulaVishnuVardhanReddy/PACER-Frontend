@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PendingCasesAPICall } from '../API/RegistrarAPI';
+import ShimmerEffect from './Shimmar';
 
 const PendingCourtCases = () => {
   const [pendingCases, setPendingCases] = useState([]);
@@ -21,7 +22,7 @@ const PendingCourtCases = () => {
     fetchPendingCases();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <ShimmerEffect/>
   if (pendingCases.length === 0) return <div>No pending court cases available.</div>;
 
   return (

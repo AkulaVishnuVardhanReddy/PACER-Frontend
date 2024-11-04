@@ -38,8 +38,8 @@ const AddAccount = () => {
             <label className="block text-gray-700 font-medium mb-2">{label}</label>
             <input
               type={label === "Password" ? "password" : "text"}
-              name={label.toLowerCase().replace(" ", "")}
-              value={formData[label.toLowerCase().replace(" ", "")]}
+              name={label.replace(" ","") === "FirstName" ? "firstName" : label.replace(" ","") === "LastName" ? "lastName" : label.toLowerCase().replace(" ", "")}
+              value={formData[label.replace(" ","") === "FirstName" ? "firstName" : label.replace(" ","") === "LastName" ? "lastName" : label.toLowerCase().replace(" ", "")]}
               onChange={handleChange}
               placeholder={label}
               required
