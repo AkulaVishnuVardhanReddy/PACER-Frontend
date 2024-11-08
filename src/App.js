@@ -30,6 +30,8 @@ import JudgeName from './Components/LawyerJudge/JudgeName';
 import KeywordSearch from './Components/LawyerJudge/KeywordSearch';
 import LawyerName from './Components/LawyerJudge/LawyerName';
 import PublicProsecutor from './Components/LawyerJudge/PublicProsecutor';
+import CaseDetails from './Components/LawyerJudge/CaseDetails';
+import UserProfile from './Components/UserProfile';
 
 
 const AppLayout = () => {
@@ -81,6 +83,8 @@ const App = () => {
           <Route path="keyword-search" element={<KeywordSearch />} />
           <Route path="lawyer-name" element={<LawyerName />} />
           <Route path="public-prosecutor" element={<PublicProsecutor />} />
+          <Route path="case-details" element={<CaseDetails />} />
+          <Route path="user-profile" element={<UserProfile />} />
           <Route index element={<Judge />} /> 
         </Route>
         
