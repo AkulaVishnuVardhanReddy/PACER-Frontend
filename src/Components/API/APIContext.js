@@ -1,6 +1,6 @@
 import { getCurrentDateTime } from "../Services/DateTIme";
 import { apiClient } from "./APIClient";
-import { getUseridByUserName } from "./PublicAPICalls";
+import { getFirstNameByUserName, getUseridByUserName } from "./PublicAPICalls";
 
 export async function Logged(Username, Password) {
     try {
@@ -18,7 +18,12 @@ export async function Logged(Username, Password) {
                 const id = await getUseridByUserName(response.data.name);
                 sessionStorage.setItem("userId",id.data);
             };
+            const FirstNameId = async () => {
+                const firstName = await getFirstNameByUserName(response.data.name);
+                sessionStorage.setItem("FirstName",firstName.data);
+            };
             userId();
+            FirstNameId();
             sessionStorage.setItem("loginTime",getCurrentDateTime());
         }
         return response.data;
