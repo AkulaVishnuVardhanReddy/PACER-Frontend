@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { detailsAPICall } from '../API/RegistrarAPI';
+import { KeywordSearchAPICall } from '../API/LawyerAPI';
 
 const KeywordSearch = () => {
   const [details, setDetails] = useState([]);
@@ -8,7 +9,7 @@ const KeywordSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const history = await detailsAPICall(keyword)
+    const history = await KeywordSearchAPICall(keyword);
     if (Array.isArray(history.data)) setDetails(history.data);
     if (details.length === 0) setEmpty(false);
     else setEmpty(true);

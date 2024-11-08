@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { detailsAPICall } from '../API/RegistrarAPI';
+import { CaseTypeAPICall } from '../API/LawyerAPI';
 
 const CaseType = () => {
   const [details, setDetails] = useState([]);
@@ -8,10 +8,10 @@ const CaseType = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const history = await detailsAPICall(caseType)
+    const history = await CaseTypeAPICall(caseType);
     if (Array.isArray(history.data)) setDetails(history.data);
-    if (details.length === 0) setEmpty(false);
-    else setEmpty(true);
+    if (history.data.length === 0) setEmpty(true);
+    else setEmpty(false);
   };
 
   
@@ -48,7 +48,7 @@ const CaseType = () => {
           <tr>
             <th className="p-4 border-b border-gray-300">CIN</th>
             <th className="p-4 border-b border-gray-300">Type</th>
-            <th className="p-4 border-b border-gray-300">Police Station</th>
+            <th className="p-4 border-b border-gray-300">Court Name</th>
             <th className="p-4 border-b border-gray-300">Judge</th>
             <th className="p-4 border-b border-gray-300">Lawyer</th>
           </tr>
@@ -57,8 +57,8 @@ const CaseType = () => {
           {details.map((history, index) => (
             <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
               <td className="p-4 border-b border-gray-300">{history.cin}</td>
-              <td className="p-4 border-b border-gray-300">{history.caseType} </td>
-              <td className="p-4 border-b border-gray-300">{history.policeStation}</td>
+              <td className="p-4 border-b border-gray-300">{history.crimeType} </td>
+              <td className="p-4 border-b border-gray-300">{history.courtName}</td>
               <td className="p-4 border-b border-gray-300">{history.judgeName}</td>
               <td className="p-4 border-b border-gray-300">{history.lawyerName}</td>
             </tr>

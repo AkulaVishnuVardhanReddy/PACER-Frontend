@@ -20,6 +20,16 @@ import PendingCourtCases from './Components/Registrar/PendingCases';
 import ResolvedCourtCases from './Components/Registrar/ResolvedCases';
 import LoginHistory from './Components/Registrar/LoginHistory';
 import CaseAccessHistory from './Components/Registrar/CaseAccessHistory';
+import CaseId from './Components/LawyerJudge/CaseId';
+import CourtName from './Components/LawyerJudge/CourtName';
+import ArrestingOfficer from './Components/LawyerJudge/ArrestingOfficer';
+import AccusedName from './Components/LawyerJudge/AccusedName';
+import CaseType from './Components/LawyerJudge/CaseType';
+import HearingDate from './Components/LawyerJudge/HearingDate';
+import JudgeName from './Components/LawyerJudge/JudgeName';
+import KeywordSearch from './Components/LawyerJudge/KeywordSearch';
+import LawyerName from './Components/LawyerJudge/LawyerName';
+import PublicProsecutor from './Components/LawyerJudge/PublicProsecutor';
 
 
 const AppLayout = () => {
@@ -60,6 +70,17 @@ const App = () => {
 
 
         <Route path="judge/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_JUDGE"/>}>
+          <Route path="case-id" element={<CaseId />} />
+          <Route path="court-name" element={<CourtName />} />
+          <Route path="arresting-officer" element={<ArrestingOfficer />} />
+          <Route path="accused-name" element={<AccusedName />} />
+          <Route path="case-type" element={<CaseType />} />
+          <Route path="court-name" element={<CourtName />} />
+          <Route path="hearing-date" element={<HearingDate />} />
+          <Route path="judge-name" element={<JudgeName />} />
+          <Route path="keyword-search" element={<KeywordSearch />} />
+          <Route path="lawyer-name" element={<LawyerName />} />
+          <Route path="public-prosecutor" element={<PublicProsecutor />} />
           <Route index element={<Judge />} /> 
         </Route>
         

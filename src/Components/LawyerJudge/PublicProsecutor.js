@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { detailsAPICall } from '../API/RegistrarAPI';
+import { PublicProsecutorAPICall } from '../API/LawyerAPI';
 
-const PoliceStation = () => {
+const PublicProsecutor = () => {
   const [details, setDetails] = useState([]);
   const [empty,setEmpty] = useState(false);
-  const [policeStation,setPoliceStation] =useState("");
+  const [publicProsecutor,setPublicProsecutor] =useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const history = await detailsAPICall(policeStation)
-    if (Array.isArray(history.data)) setDetails(history.data);
-    if (details.length === 0) setEmpty(false);
-    else setEmpty(true);
+    const cases = await PublicProsecutorAPICall(publicProsecutor);
+    if (Array.isArray(cases.data)) setDetails(cases.data);
+    if (cases.data.length === 0) setEmpty(true);
+    else setEmpty(false);
   };
 
   
@@ -19,13 +19,13 @@ const PoliceStation = () => {
   return (
     <>
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
-    <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Cases registred on Police Station</h2>
+    <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Search by Prosecutor</h2>
     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            <label className="font-medium text-gray-700">Police Station:</label>
+            <label className="font-medium text-gray-700">Public Prosecutor:</label>
             <input
                 type="text"
-                value={policeStation}
-                onChange={(e) => setPoliceStation(e.target.value)}
+                value={publicProsecutor}
+                onChange={(e) => setPublicProsecutor(e.target.value)}
                 className="p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition-colors duration-200"
                 required
             />
@@ -48,19 +48,19 @@ const PoliceStation = () => {
           <tr>
             <th className="p-4 border-b border-gray-300">CIN</th>
             <th className="p-4 border-b border-gray-300">Type</th>
-            <th className="p-4 border-b border-gray-300">Police Station</th>
+            <th className="p-4 border-b border-gray-300">Court Name</th>
             <th className="p-4 border-b border-gray-300">Judge</th>
             <th className="p-4 border-b border-gray-300">Lawyer</th>
           </tr>
         </thead>
         <tbody>
-          {details.map((history, index) => (
+          {details.map((cases, index) => (
             <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
-              <td className="p-4 border-b border-gray-300">{history.cin}</td>
-              <td className="p-4 border-b border-gray-300">{history.caseType} </td>
-              <td className="p-4 border-b border-gray-300">{history.policeStation}</td>
-              <td className="p-4 border-b border-gray-300">{history.policeStation}</td>
-              <td className="p-4 border-b border-gray-300">{history.lawyerName}</td>
+              <td className="p-4 border-b border-gray-300">{cases.cin}</td>
+              <td className="p-4 border-b border-gray-300">{cases.crimeType} </td>
+              <td className="p-4 border-b border-gray-300">{cases.courtName}</td>
+              <td className="p-4 border-b border-gray-300">{cases.judgeName}</td>
+              <td className="p-4 border-b border-gray-300">{cases.lawyerName}</td>
             </tr>
           ))}
         </tbody>
@@ -70,4 +70,4 @@ const PoliceStation = () => {
   );
 };
 
-export default PoliceStation;
+export default PublicProsecutor;

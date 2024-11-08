@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Assets/images/Logo.png";
 import {
   FaUserPlus,
-  FaSignOutAlt,
   FaGavel,
   FaUserMinus,
   FaFolderOpen,
@@ -59,13 +58,13 @@ const Sidebar = () => {
     { to: "keyword-search", icon: <FaSearch />, label: "Keyword Search" },
     { to: "case-type", icon: <FaBalanceScale />, label: "Case Type" },
     { to: "arresting-officer", icon: <FaUserShield />, label: "Arresting Officer" },
-    { to: "lawyer", icon: <FaUserTie />, label: "Lawyer" },
-    { to: "police-station", icon: <FaUniversity />, label: "Police Station" },
+    { to: "lawyer-name", icon: <FaUserTie />, label: "Lawyer" },
+    { to: "public-prosecutor", icon: <FaUniversity />, label: "Public Prosecutor" },
     { to: "accused-name", icon: <FaUser />, label: "Accused Name" },
     { to: "judge-name", icon: <FaGavel />, label: "Judge Name" },
   ];
 
-  const menuItems = role === "ROE_REGISTRAR" ? registrarMenuItems : lawyerMenuItems;
+  const menuItems = role === "ROLE_REGISTRAR" ? registrarMenuItems : lawyerMenuItems;
 
   return (
     <div className="bg-indigo-800 w-64 p-6 m-4 rounded-2xl shadow-lg flex flex-col text-white overflow-y-auto hide-scrollbar">

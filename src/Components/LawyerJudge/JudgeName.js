@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { detailsAPICall } from '../API/RegistrarAPI';
+import { JudgeNameAPICall } from '../API/LawyerAPI';
 
 const JudgeName = () => {
   const [details, setDetails] = useState([]);
@@ -8,10 +8,10 @@ const JudgeName = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const history = await detailsAPICall(judgeName)
+    const history = await JudgeNameAPICall(judgeName);
     if (Array.isArray(history.data)) setDetails(history.data);
-    if (details.length === 0) setEmpty(false);
-    else setEmpty(true);
+    if (history.data.length === 0) setEmpty(true);
+    else setEmpty(false);
   };
 
   
@@ -19,7 +19,7 @@ const JudgeName = () => {
   return (
     <>
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
-    <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Cases Handled By Judge</h2>
+    <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Search By Judge</h2>
     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <label className="font-medium text-gray-700">Judge Name:</label>
             <input
@@ -48,7 +48,7 @@ const JudgeName = () => {
           <tr>
             <th className="p-4 border-b border-gray-300">CIN</th>
             <th className="p-4 border-b border-gray-300">Type</th>
-            <th className="p-4 border-b border-gray-300">Police Station</th>
+            <th className="p-4 border-b border-gray-300">Court Name</th>
             <th className="p-4 border-b border-gray-300">Judge</th>
             <th className="p-4 border-b border-gray-300">Lawyer</th>
           </tr>
@@ -57,8 +57,8 @@ const JudgeName = () => {
           {details.map((history, index) => (
             <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'}>
               <td className="p-4 border-b border-gray-300">{history.cin}</td>
-              <td className="p-4 border-b border-gray-300">{history.caseType} </td>
-              <td className="p-4 border-b border-gray-300">{history.policeStation}</td>
+              <td className="p-4 border-b border-gray-300">{history.crimeType} </td>
+              <td className="p-4 border-b border-gray-300">{history.courtName}</td>
               <td className="p-4 border-b border-gray-300">{history.judgeName}</td>
               <td className="p-4 border-b border-gray-300">{history.lawyerName}</td>
             </tr>
