@@ -1,31 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiHome, FiUser, FiLogOut, FiChevronDown } from 'react-icons/fi';
 import ProfileLogo from '../../Assets/images/ProfileLogo.png';
-
 import emblem from "../../Assets/images/emblem.svg";
+import { logoutService } from '../Services/LogoutService';
+import { addLoginHistoryAPICall } from '../API/PublicAPICalls';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null); // Ref to the dropdown container
-  const role = sessionStorage.getItem("role").split("_")[1];
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
+  const role = sessionStorage.getItem("role")?.split("_")[1];
 
-  // Toggle dropdown state
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Close dropdown if clicked outside
+  const callLogout = async (loginHistory) => {
+    await addLoginHistoryAPICall(loginHistory);
+  };
+  
+  const handleLogout = async () => {
+    const loginHistory = logoutService();
+    console.log(loginHistory);
+    await callLogout(loginHistory);
+    sessionStorage.clear();
+    navigate("/");
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false); // Close dropdown if clicked outside
+        setIsDropdownOpen(false);
       }
     };
-
-    // Add event listener
     document.addEventListener("mousedown", handleClickOutside);
-
-    // Cleanup the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -34,16 +43,15 @@ const Header = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-3">
       <div className="flex">
-          <div>
-            <img src={emblem} alt="Emblem" className="h-12 m-3" />
-          </div>
-          <div className="m-3">
-            <h2 className="text-md font-bold">न्याय विभाग</h2>
-            <h1 className="text-md font-bold">DEPARTMENT OF JUSTICE</h1>
-          </div>
+        <div>
+          <img src={emblem} alt="Emblem" className="h-12 m-3" />
         </div>
+        <div className="m-3">
+          <h2 className="text-md font-bold">न्याय विभाग</h2>
+          <h1 className="text-md font-bold">DEPARTMENT OF JUSTICE</h1>
+        </div>
+      </div>
 
-      {/* Right Profile Section with Dropdown */}
       <div className="relative">
         <div 
           onClick={toggleDropdown} 
@@ -66,10 +74,9 @@ const Header = () => {
           />
         </div>
 
-        {/* Dropdown Menu */}
         {isDropdownOpen && (
           <div 
-            ref={dropdownRef} // Attach the ref to the dropdown menu
+            ref={dropdownRef}
             className="absolute right-0 mt-2 w-60 bg-white rounded-xl shadow-lg border border-gray-200 transform scale-95 transition-all duration-200 ease-out z-20 hover:scale-100"
           >
             <div className="p-4 border-b border-gray-100 text-center bg-blue-50 rounded-t-xl">
@@ -77,9 +84,13 @@ const Header = () => {
               <p className="text-gray-800 font-semibold">{sessionStorage.getItem("FirstName")}</p>
               <p className="text-gray-500 text-sm">{role}</p>
             </div>
-            {[{ label: 'Home', icon: FiHome }, { label: 'Profile', icon: FiUser },  { label: 'Logout', icon: FiLogOut }].map((item, index) => (
+            {[{ label: 'Home', icon: FiHome, onClick: () => { navigate(`/${role.toLowerCase()}`); setIsDropdownOpen(false); } },
+              { label: 'Profile', icon: FiUser, onClick: () => { navigate(`/${role.toLowerCase()}/user-profile`); setIsDropdownOpen(false); } },
+              { label: 'Logout', icon: FiLogOut, onClick: handleLogout }
+            ].map((item, index) => (
               <button
                 key={index}
+                onClick={item.onClick}
                 className="flex items-center w-full px-4 py-3 space-x-2 text-left text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition-colors duration-300 ease-in-out rounded-xl"
               >
                 <item.icon className="text-lg" />

@@ -15,21 +15,12 @@ import { FaSearch, FaIdBadge, FaBuilding, FaCalendarDay, FaBalanceScale, FaUserS
 import { addLoginHistoryAPICall } from "./API/PublicAPICalls";
 import { logoutService } from "./Services/LogoutService";
 
-const callLogout = async (loginHistory) => {
-  await addLoginHistoryAPICall(loginHistory);
-};
+
 
 const Sidebar = () => {
-  const navigate = useNavigate();
   const role = sessionStorage.getItem("role");
 
-  const handleLogout = async () => {
-    const loginHistory = logoutService();
-    console.log(loginHistory);
-    await callLogout(loginHistory);
-    sessionStorage.clear();
-    navigate("/");
-  };
+  
 
   const NavItem = ({ icon, label, to, onClick }) => (
     <Link to={to} onClick={onClick}>

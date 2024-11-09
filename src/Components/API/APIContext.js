@@ -12,7 +12,7 @@ export async function Logged(Username, Password) {
         if (response.status===200) {
             const auth = btoa(`${Username}:${Password}`);
             sessionStorage.setItem("auth",auth);
-            sessionStorage.setItem("name",response.data.name);
+            sessionStorage.setItem("username",response.data.name);
             sessionStorage.setItem("role",response.data.role);
             const userId = async () => {
                 const id = await getUseridByUserName(response.data.name);

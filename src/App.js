@@ -67,6 +67,7 @@ const App = () => {
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
           <Route path="login-history" element={<LoginHistory />} />
           <Route path="case-history" element={<CaseAccessHistory />} />
+          <Route path="user-profile" element={<UserProfile />} />
           <Route index element={<AddAccount />} /> 
         </Route>
 

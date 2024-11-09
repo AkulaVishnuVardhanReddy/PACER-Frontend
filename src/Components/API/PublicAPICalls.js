@@ -34,3 +34,5 @@ export const addLoginHistoryAPICall = (data) => postRequest('/login-history', da
 export const addCaseAccessHistoryAPICall = (data) => postRequest('/case-history', data);
 export const getUseridByUserName = (username) => getRequest(`/findUserId/${username}`);
 export const getFirstNameByUserName = (username) => getRequest(`/findFirstName/${username}`);
+export const UserDetailsAPICall = (username) => getRequest(`/user-profile/${username}`);
+

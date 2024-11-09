@@ -3,7 +3,7 @@ import { ScheduleCourtCaseAPICall } from '../API/RegistrarAPI';
 
 const ScheduleCourtCase = () => {
   const [formData, setFormData] = useState({
-    courtCase: { cin: "" }, hearingDate: '', adjournmentReason: '', proceedingSummary: '', nextHearingDate: ''
+    courtCase: { cin: "" }, hearingDate: '', adjournmentReason: '', procedingSummary: '', nextHearingDate: ''
   });
   const [message, setMessage] = useState("");
   const [created, setCreated] = useState(false);
@@ -32,7 +32,7 @@ const ScheduleCourtCase = () => {
       </div>
       <div className="space-y-6">
         <InputField label="Adjournment Reason" name="adjournmentReason" value={formData.adjournmentReason} onChange={handleChange} />
-        <TextAreaField label="Proceeding Summary" name="proceedingSummary" value={formData.proceedingSummary} onChange={handleChange} />
+        <TextAreaField label="Proceding Summary" name="procedingSummary" value={formData.procedingSummary} onChange={handleChange} />
         <InputField label="Next Hearing Date" name="nextHearingDate" value={formData.nextHearingDate} onChange={handleChange} type="date" />
       </div>
       <button type="submit" className="w-full mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-lg hover:from-indigo-600 hover:to-purple-700 shadow-lg transform transition-all duration-200 hover:scale-105">

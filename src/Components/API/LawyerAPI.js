@@ -10,3 +10,5 @@ export const JudgeNameAPICall = (name) => getRequest(`/court-cases/judge/${name}
 export const KeywordSearchAPICall = (keyword) => getRequest(`/case-history/keyword/${keyword}`);
 export const LawyerNameAPICall = (name) => getRequest(`/court-cases/lawyer/${name}`);
 export const PublicProsecutorAPICall = (name) => getRequest(`/court-cases/public-prosecutor/${name}`);
+export const CaseDetailsAPICall = (cin) => getRequest(`/court-cases/${cin}`);
+export const HearingsAPICall = (cin) => getRequest(`/cases/hearing/${cin}`);
