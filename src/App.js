@@ -84,13 +84,26 @@ const App = () => {
           <Route path="keyword-search" element={<KeywordSearch />} />
           <Route path="lawyer-name" element={<LawyerName />} />
           <Route path="public-prosecutor" element={<PublicProsecutor />} />
-          <Route path="case-details" element={<CaseDetails />} />
+          <Route path="case-details/:caseId" element={<CaseDetails />} />
           <Route path="user-profile" element={<UserProfile />} />
           <Route index element={<Judge />} /> 
         </Route>
         
-        <Route path="lawyer/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_JUDGE"/>}>
-          <Route index element={<Judge />} /> 
+        <Route path="lawyer/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_LAWYER"/>}>
+          <Route path="case-id" element={<CaseId />} />
+          <Route path="court-name" element={<CourtName />} />
+          <Route path="arresting-officer" element={<ArrestingOfficer />} />
+          <Route path="accused-name" element={<AccusedName />} />
+          <Route path="case-type" element={<CaseType />} />
+          <Route path="court-name" element={<CourtName />} />
+          <Route path="hearing-date" element={<HearingDate />} />
+          <Route path="judge-name" element={<JudgeName />} />
+          <Route path="keyword-search" element={<KeywordSearch />} />
+          <Route path="lawyer-name" element={<LawyerName />} />
+          <Route path="public-prosecutor" element={<PublicProsecutor />} />
+          <Route path="case-details/:caseId" element={<CaseDetails />} />
+          <Route path="user-profile" element={<UserProfile />} />
+          <Route index element={<UserProfile />} />  
         </Route>
 
       </Routes>

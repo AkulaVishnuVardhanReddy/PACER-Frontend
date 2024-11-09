@@ -21,7 +21,7 @@ const Login = () => {
       } else if (userData.role === "ROLE_REGISTRAR") {
         navigate("/registrar");
       } else if (userData.role === "ROLE_LAWYER") {
-        navigate("/aboutus");
+        navigate("/lawyer");
       }
     } else {
       setErrorMessage("Login Failed");

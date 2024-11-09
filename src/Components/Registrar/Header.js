@@ -41,7 +41,7 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="flex items-center justify-between px-6 py-3">
+    <nav className="flex items-center justify-between px-6 py-1 border-b-2">
       <div className="flex">
         <div>
           <img src={emblem} alt="Emblem" className="h-12 m-3" />

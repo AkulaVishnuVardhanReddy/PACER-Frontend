@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { CaseDetailsAPICall, HearingsAPICall } from '../API/LawyerAPI';
 import Shimmar from '../Registrar/Shimmar'
+import { useParams } from 'react-router-dom';
 
 const CaseDetails = () => {
   const [caseData,setCaseData]=useState([]);
   const [hearings,setHearings]=useState([]);
   const [loading,setLoading] = useState(true);
-
+  const { caseId } = useParams();
 
   useEffect(() => {
     const fetchCaseDetails = async () => {
-        const { data } = await CaseDetailsAPICall(22);  //Return Response.data
+        const { data } = await CaseDetailsAPICall(caseId);  //Return Response.data
         setCaseData(data);
         console.log(data);
         setLoading(false);
     };
     fetchCaseDetails();
-  }, []);
+  }, [caseId]);
 
   useEffect(() => {
     const fetchHearingDetails = async () => {
-        const { data } = await HearingsAPICall(22);
+        const { data } = await HearingsAPICall(caseId);
         setHearings(data);
         setLoading(false);
     };
     fetchHearingDetails();
-  }, []);
+  }, [caseId]);
 
   if(loading) return <Shimmar/>
 
