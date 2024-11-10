@@ -34,6 +34,7 @@ import CaseDetails from './Components/LawyerJudge/CaseDetails';
 import UserProfile from './Components/UserProfile';
 import Payment from './Components/LawyerJudge/Payment';
 import UpdateUser from './Components/Registrar/UpdateUser';
+import UpdateCourtCase from './Components/Registrar/UpdateCase';
 
 
 const AppLayout = () => {
@@ -66,7 +67,7 @@ const App = () => {
           <Route path="create-court-case" element={<CreateCourtCase />} />
           <Route path="schedule-court-case" element={<ScheduleCourtCase />} />
           <Route path="update-user" element={<UpdateUser />} />
-          <Route path="update-case" element={<ScheduleCourtCase />} />
+          <Route path="update-case" element={<UpdateCourtCase />} />
           <Route path="pending-court-cases" element={<PendingCourtCases />} />
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />
           <Route path="login-history" element={<LoginHistory />} />

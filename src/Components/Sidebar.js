@@ -4,12 +4,14 @@ import Logo from "../Assets/images/Logo.png";
 import {
   FaUserPlus,
   FaGavel,
-  FaUserMinus,
   FaFolderOpen,
   FaCheckCircle,
   FaCalendarAlt,
   FaPlusSquare,
   FaClock,
+  FaRegEdit,
+  FaHistory,
+  FaClipboardList,
 } from "react-icons/fa";
 import { FaSearch, FaIdBadge, FaBuilding, FaCalendarDay, FaBalanceScale, FaUserShield, FaUserTie, FaUniversity, FaUser  } from "react-icons/fa";
 
@@ -27,16 +29,15 @@ const Sidebar = () => {
   );
 
   const registrarMenuItems = [
-    { to: "add-account", icon: <FaUserPlus />, label: "Add Accounts" },
-    { to: "remove-account", icon: <FaUserMinus />, label: "Remove Accounts" },
-    { to: "create-court-case", icon: <FaPlusSquare />, label: "Add Case" },
-    { to: "schedule-court-case", icon: <FaCalendarAlt />, label: "Schedule Case" },
-    { to: "update-user", icon: <FaCalendarAlt />, label: "Update User" },
-    { to: "update-case", icon: <FaCalendarAlt />, label: "Update Case" },
-    { to: "login-history", icon: <FaClock />, label: "Login History" },
-    { to: "case-history", icon: <FaGavel />, label: "Case History" },
-    { to: "pending-court-cases", icon: <FaFolderOpen />, label: "Pending Cases" },
-    { to: "resolved-court-cases", icon: <FaCheckCircle />, label: "Resolved Cases" },
+    { to: "add-account", icon: <FaUserPlus />, label: "Add Accounts" }, // FaUserPlus is good for adding accounts
+    { to: "create-court-case", icon: <FaPlusSquare />, label: "Add Case" }, // FaPlusSquare for adding a case
+    { to: "schedule-court-case", icon: <FaCalendarAlt />, label: "Schedule Case" }, // FaCalendarAlt for scheduling
+    { to: "update-user", icon: <FaRegEdit />, label: "Update User" }, // FaRegEdit for updating user details
+    { to: "update-case", icon: <FaClipboardList />, label: "Update Case" }, // FaRegEdit for updating a case
+    { to: "login-history", icon: <FaHistory />, label: "Login History" }, // FaHistory for login history
+    { to: "case-history", icon: <FaGavel />, label: "Case History" }, // FaGavel for case history
+    { to: "pending-court-cases", icon: <FaFolderOpen />, label: "Pending Cases" }, // FaFolderOpen for pending cases
+    { to: "resolved-court-cases", icon: <FaCheckCircle />, label: "Resolved Cases" }, // FaCheckCircle for resolved cases
   ];
 
   const lawyerMenuItems = [

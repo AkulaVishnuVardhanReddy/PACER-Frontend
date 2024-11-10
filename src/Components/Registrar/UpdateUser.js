@@ -31,10 +31,10 @@ const UpdateAccount = () => {
   
     try {
       const { data } = await GetUserDetailsAPICall(userId);
-      
-      if (data) {
-        setUserDetails(data);
-        setFormData(data);
+      const modifiedData = { ...data, password: "" };
+      if (modifiedData) {
+        setUserDetails(modifiedData);
+        setFormData(modifiedData);
         setFetched(true);
         setMessage("User details fetched successfully!");
       } 
@@ -55,7 +55,7 @@ const UpdateAccount = () => {
 
   return (
     <div>
-      <form onSubmit={handleUserIdSubmit} className="max-w-xl mx-auto mb-8 p-8 bg-white shadow-lg rounded-lg">
+      <form onSubmit={handleUserIdSubmit} className="max-w-lg mx-auto mb-8 p-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">Update Account</h2>
 
         {/* User ID Input to fetch details */}
@@ -71,7 +71,7 @@ const UpdateAccount = () => {
           <button
             type="button"
             onClick={handleUserIdSubmit}
-            className="w-full mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold p-3 rounded-lg hover:from-indigo-600 hover:to-purple-700 shadow-lg"
+            className="w-full px-4 mt-4 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-700 transition-colors duration-200"
           >
             Get Details
           </button>
@@ -97,7 +97,7 @@ const UpdateAccount = () => {
                     name={field}
                     value={formData[field]}
                     onChange={handleChange}
-                    placeholder={field.replace(/([A-Z])/g, ' $1')}
+                    placeholder={field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                     required
                     className={inputClass}
                 />
