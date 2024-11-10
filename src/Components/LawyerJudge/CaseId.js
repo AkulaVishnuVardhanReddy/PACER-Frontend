@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CaseHistory } from '../Services/AllServices';
 
 const CaseId = () => {
     const [caseId, setCaseId] = useState('');
     const navigate = useNavigate();
     const role = sessionStorage.getItem("role")?.split("_")[1].toLowerCase();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();  // Prevent the form from reloading the page
-        navigate(`/${role}/case-details/${caseId}`);  // Navigate to the case-details page
+    const handleSubmit = () => { 
+        if(role==="lawyer")
+            navigate(`/${role}/payments/${caseId}`);
+        else{
+        CaseHistory(caseId,0);
+        navigate(`/${role}/case-details/${caseId}`);
+        }
     }
 
     return (

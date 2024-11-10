@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CourtNameAPICall } from '../API/LawyerAPI';
 import { useNavigate } from 'react-router-dom';
+import { CaseHistory } from '../Services/AllServices';
 
 const CourtName = () => {
   const [details, setDetails] = useState([]);
@@ -10,7 +11,12 @@ const CourtName = () => {
   const role = sessionStorage.getItem("role")?.split("_")[1].toLowerCase();
 
   const handleRowClick =(caseId)=>{
-    navigate(`/${role}/case-details/${caseId}`);
+    if(role==="lawyer")
+      navigate(`/${role}/payments/${caseId}`);
+    else{
+      CaseHistory(caseId,0);
+      navigate(`/${role}/case-details/${caseId}`);
+    }
   }
 
   const handleSubmit = async (e) => {

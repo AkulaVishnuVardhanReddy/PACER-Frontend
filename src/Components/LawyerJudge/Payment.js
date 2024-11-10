@@ -16,30 +16,30 @@ export default function Payment() {
     setAmount(randomAmount);
   }, [cin]);
 
-  const CaseHistory = async()=>{
-    const data= CaseAccessHistoryService(cin,amount);
+  const CaseHistory = async()=> {
+    const data = CaseAccessHistoryService(cin, amount);
     await addCaseAccessHistoryAPICall(data);
-  }
+  };
 
-  const handlePayments =()=>{
+  const handlePayments = () => {
     CaseHistory();
-    const caseId=cin;
+    const caseId = cin;
     console.log(`Navigating to: /${role}/case-details/${caseId}`);
     navigate(`/${role}/case-details/${caseId}`);
-  }
+  };
 
   return (
-    <div className="p-10 w-full min-h-screen  text-white flex justify-center items-center">
+    <div className="p-10 w-full min-h-screen text-white flex justify-center items-center">
       <div className="w-full max-w-3xl bg-white text-gray-800 shadow-2xl rounded-3xl p-10">
         <div className="flex justify-between">
-        <h2 className="text-3xl font-bold mb-6">Payment</h2>
+          <h2 className="text-3xl font-bold mb-6">Payment</h2>
 
-        {/* Display Lawyer Name, CIN, and Amount */}
-        <div className="mb-8">
-          <p className="text-lg font-semibold">Lawyer Name: <span className="text-purple-600">{lawyerName}</span></p>
-          <p className="text-lg font-semibold">CIN: <span className="text-purple-600">{cin}</span></p>
-          <p className="text-2xl font-bold">Amount: ₹{amount}</p>
-        </div>
+          {/* Display Lawyer Name, CIN, and Amount */}
+          <div className="mb-8">
+            <p className="text-lg font-semibold">Lawyer Name: <span className="text-purple-600">{lawyerName}</span></p>
+            <p className="text-lg font-semibold">CIN: <span className="text-purple-600">{cin}</span></p>
+            <p className="text-2xl font-bold">Amount: ₹{amount}</p>
+          </div>
         </div>
 
         {/* Payment Method Selection */}
@@ -50,9 +50,7 @@ export default function Payment() {
               <button
                 key={method}
                 onClick={() => setPaymentMethod(method)}
-                className={`w-1/4 p-4 border-2 rounded-xl transition transform hover:scale-105 ${
-                  paymentMethod === method ? 'border-purple-700 bg-purple-100' : 'border-gray-300 bg-gray-100'
-                }`}
+                className={`w-1/4 p-4 border-2 rounded-xl transition transform hover:scale-105 ${paymentMethod === method ? 'border-purple-700 bg-purple-100' : 'border-gray-300 bg-gray-100'}`}
               >
                 <span className="text-xl font-bold">
                   {method.charAt(0).toUpperCase() + method.slice(1)}
@@ -82,6 +80,7 @@ export default function Payment() {
                   id={id}
                   placeholder={placeholder}
                   className="w-full p-4 border rounded-xl bg-gray-50 shadow focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-300"
+                  required // Add the required attribute
                 />
               </div>
             ))}
