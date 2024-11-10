@@ -44,7 +44,7 @@ const CaseAccessHistory = () => {
 
     <div className="mx-auto p-8 bg-white shadow-lg rounded-lg max-w-3xl">
       <table className="min-w-full border-collapse">
-        <thead className="bg-indigo-400 text-white">
+        <thead className="bg-indigo-400 text-white sticky top-0">
           <tr>
             <th className="p-4 border-b border-gray-300">User ID</th>
             <th className="p-4 border-b border-gray-300">Full Name</th>

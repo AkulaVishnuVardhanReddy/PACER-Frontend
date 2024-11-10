@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../Assets/images/Logo.png";
 import {
   FaUserPlus,
@@ -12,8 +12,6 @@ import {
   FaClock,
 } from "react-icons/fa";
 import { FaSearch, FaIdBadge, FaBuilding, FaCalendarDay, FaBalanceScale, FaUserShield, FaUserTie, FaUniversity, FaUser  } from "react-icons/fa";
-import { addLoginHistoryAPICall } from "./API/PublicAPICalls";
-import { logoutService } from "./Services/LogoutService";
 
 
 
@@ -33,6 +31,8 @@ const Sidebar = () => {
     { to: "remove-account", icon: <FaUserMinus />, label: "Remove Accounts" },
     { to: "create-court-case", icon: <FaPlusSquare />, label: "Add Case" },
     { to: "schedule-court-case", icon: <FaCalendarAlt />, label: "Schedule Case" },
+    { to: "update-user", icon: <FaCalendarAlt />, label: "Update User" },
+    { to: "update-case", icon: <FaCalendarAlt />, label: "Update Case" },
     { to: "login-history", icon: <FaClock />, label: "Login History" },
     { to: "case-history", icon: <FaGavel />, label: "Case History" },
     { to: "pending-court-cases", icon: <FaFolderOpen />, label: "Pending Cases" },

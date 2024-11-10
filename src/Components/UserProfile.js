@@ -69,9 +69,7 @@ const UserProfile = () => {
 
       
       <div className="text-center mt-8">
-        <button className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200">
-          Edit Profile
-        </button> 
+         
       </div>
     </div>
   );

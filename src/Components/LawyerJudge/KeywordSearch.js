@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { detailsAPICall } from '../API/RegistrarAPI';
 import { KeywordSearchAPICall } from '../API/LawyerAPI';
 import { useNavigate } from 'react-router-dom';
 import { CaseHistory } from '../Services/AllServices';
@@ -24,8 +23,8 @@ const KeywordSearch = () => {
     e.preventDefault();
     const history = await KeywordSearchAPICall(keyword);
     if (Array.isArray(history.data)) setDetails(history.data);
-    if (details.length === 0) setEmpty(false);
-    else setEmpty(true);
+    if (history.data.length === 0) setEmpty(true);
+    else setEmpty(false);
   };
 
   
@@ -62,21 +61,19 @@ const KeywordSearch = () => {
           <tr>
             <th className="p-4 border-b border-gray-300">CIN</th>
             <th className="p-4 border-b border-gray-300">Type</th>
-            <th className="p-4 border-b border-gray-300">Police Station</th>
             <th className="p-4 border-b border-gray-300">Judge</th>
-            <th className="p-4 border-b border-gray-300">Lawyer</th>
+            <th className="p-4 border-b border-gray-300">Proceding Summary</th>
           </tr>
         </thead>
         <tbody>
           {details.map((history, index) => (
             <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'} cursor-pointer`} // Add cursor-pointer class
-            onClick={() => handleRowClick(history.cin)}
+            onClick={() => handleRowClick(history.courtCase?.cin)}
             >
-              <td className="p-4 border-b border-gray-300">{history.cin}</td>
-              <td className="p-4 border-b border-gray-300">{history.crimeType} </td>
-              <td className="p-4 border-b border-gray-300">{history.courtName}</td>
-              <td className="p-4 border-b border-gray-300">{history.judgeName}</td>
-              <td className="p-4 border-b border-gray-300">{history.lawyerName}</td>
+              <td className="p-4 border-b border-gray-300">{history.courtCase?.cin}</td>
+              <td className="p-4 border-b border-gray-300">{history.courtCase?.crimeType} </td>
+              <td className="p-4 border-b border-gray-300">{history.courtCase?.judgeName}</td>
+              <td className="p-4 border-b border-gray-300">{history.procedingSummary}</td>
             </tr>
           ))}
         </tbody>

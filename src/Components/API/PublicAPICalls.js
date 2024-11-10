@@ -16,6 +16,16 @@ export const postRequest = async (url, data) => {
       throw error;
     }
   };
+
+  export const putRequest = async (url, data) => {
+    try {
+      const response = await apiClient.put(url, data, { headers: authHeaders() });
+      return response;
+    } catch (error) {
+      console.error(`Error in PUT request to ${url}:`, error);
+      throw error;
+    }
+  };
   
 export const getRequest = async (url) => {
     try {
