@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PendingCasesAPICall } from '../API/RegistrarAPI';
-import ShimmerEffect from './Shimmar';
+import ShimmerEffect from '../Shimmar';
 
 const PendingCourtCases = () => {
   const [pendingCases, setPendingCases] = useState([]);

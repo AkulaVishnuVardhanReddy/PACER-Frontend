@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ResolvedCasesAPICall } from '../API/RegistrarAPI';
-import ShimmerEffect from './Shimmar';
+import ShimmerEffect from '../Shimmar';
 
 const ResolvedCourtCases = () => {
   const [resolvedCases, setResolvedCases] = useState([]); 

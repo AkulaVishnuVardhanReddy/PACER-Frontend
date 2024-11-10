@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import Header from './Registrar/Header';
+import Header from './Header';
 import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => (

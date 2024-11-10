@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CaseDetailsAPICall, HearingsAPICall } from '../API/LawyerAPI';
-import Shimmar from '../Registrar/Shimmar'
+import Shimmar from '../Shimmar'
 import { useParams } from 'react-router-dom';
 
 const CaseDetails = () => {

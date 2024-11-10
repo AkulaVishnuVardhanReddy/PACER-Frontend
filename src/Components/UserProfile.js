@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProfileLogo from '../Assets/images/ProfileLogo.png';
-import Shimmar from './Registrar/Shimmar'
+import Shimmar from './Shimmar'
 import { UserDetailsAPICall } from './API/PublicAPICalls';
 
 const UserProfile = () => {
