@@ -32,6 +32,7 @@ import LawyerName from './Components/LawyerJudge/LawyerName';
 import PublicProsecutor from './Components/LawyerJudge/PublicProsecutor';
 import CaseDetails from './Components/LawyerJudge/CaseDetails';
 import UserProfile from './Components/UserProfile';
+import Payment from './Components/LawyerJudge/Payment';
 
 
 const AppLayout = () => {
@@ -103,6 +104,7 @@ const App = () => {
           <Route path="public-prosecutor" element={<PublicProsecutor />} />
           <Route path="case-details/:caseId" element={<CaseDetails />} />
           <Route path="user-profile" element={<UserProfile />} />
+          <Route path="payments/:cin" element={<Payment />} />
           <Route index element={<UserProfile />} />  
         </Route>
 

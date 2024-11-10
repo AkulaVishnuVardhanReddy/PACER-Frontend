@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { JudgeNameAPICall } from '../API/LawyerAPI';
-import { useNavigate } from 'react-router-dom';
+import { HandleRowClick } from '../Services/AllServices';
 
 const JudgeName = () => {
   const [details, setDetails] = useState([]);
   const [empty,setEmpty] = useState(false);
   const [judgeName,setJudgeName] =useState("");
-  const navigate = useNavigate();
-  const role = sessionStorage.getItem("role")?.split("_")[1].toLowerCase();
-
-  const handleRowClick =(caseId)=>{
-    navigate(`/${role}/case-details/${caseId}`);
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const history = await JudgeNameAPICall(judgeName);
@@ -63,7 +56,7 @@ const JudgeName = () => {
         <tbody>
           {details.map((history, index) => (
             <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white hover:bg-indigo-50'} cursor-pointer`} // Add cursor-pointer class
-            onClick={() => handleRowClick(history.cin)}
+            onClick={() => HandleRowClick(history.cin)}
             >
               <td className="p-4 border-b border-gray-300">{history.cin}</td>
               <td className="p-4 border-b border-gray-300">{history.crimeType} </td>

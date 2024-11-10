@@ -19,9 +19,6 @@ import { logoutService } from "./Services/LogoutService";
 
 const Sidebar = () => {
   const role = sessionStorage.getItem("role");
-
-  
-
   const NavItem = ({ icon, label, to, onClick }) => (
     <Link to={to} onClick={onClick}>
       <div className="flex items-center space-x-3 p-3 rounded-lg transition duration-200 ease-in-out hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 cursor-pointer">
@@ -62,9 +59,11 @@ const Sidebar = () => {
       <div className="flex justify-center mb-3">
         <img src={Logo} alt="logo" className="h-24 w-24" />
       </div>
+      <div className="flex-1 overflow-y-auto hide-scrollbar">
       {menuItems.map(({ to, icon, label, onClick }) => (
         <NavItem key={to} to={to} icon={icon} label={label} onClick={onClick} />
       ))}
+      </div>
     </div>
   );
 };
