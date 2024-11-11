@@ -2,17 +2,10 @@ import React from 'react';
 import hammer from "../Assets/images/hammer.png";
 // import Carousel from './Carousel';
 
-const Body = () => {
-  return (
-    <div>
-      <div>
-      <img className="size-full" src={hammer}/>
-      </div>
-    <div>
-      {/* <Carousel/> */}
-    </div>
-    </div>
-  );
-}
+const Body = () => (
+  <div>
+    <img className="size-full" alt="main-image" src={hammer} />
+  </div>
+);
 
 export default Body;

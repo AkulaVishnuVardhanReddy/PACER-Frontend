@@ -22,7 +22,11 @@ export const postRequestForPhotoUser = async (url, data) => {
 
 export const getRequestForPhoto = async (url) => {
   try {
-    const response = await apiClient.get(url, { headers: authHeadersForPhoto() });
+    console.log(url);
+    const response = await apiClient.get(url, {
+      headers: authHeadersForPhoto(),
+      responseType: "blob" // Ensure response is returned as a Blob
+    });
     return response;
   } catch (error) {
     console.error(`Error in GET request to ${url}:`, error);
@@ -69,4 +73,4 @@ export const addCaseAccessHistoryAPICall = (data) => postRequest('/case-history'
 export const getUseridByUserName = (username) => getRequest(`/findUserId/${username}`);
 export const getFirstNameByUserName = (username) => getRequest(`/findFirstName/${username}`);
 export const UserDetailsAPICall = (username) => getRequest(`/user-profile/${username}`);
-
+export const GetPhotoAPICall = (username) => getRequestForPhoto(`users/photo/${username}`);

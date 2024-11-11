@@ -4,41 +4,28 @@ import emblem from "../Assets/images/emblem.svg";
 const HomeHeader = () => {
   const navigate = useNavigate();
   return (
-    <div>
-      <div className="flex justify-between bg-gray-300 shadow-md p-1">
-        <div className="flex">
-          <div>
-            <img src={emblem} alt="Emblem" className="h-12 m-3" />
-          </div>
-          <div className="m-3">
-            <h2 className="text-md font-bold">न्याय विभाग</h2>
-            <h1 className="text-md font-bold">DEPARTMENT OF JUSTICE</h1>
-          </div>
+    <div className="flex justify-between bg-gray-300 shadow-md p-1">
+      <div className="flex items-center pl-4">
+        <img src={emblem} alt="Emblem" className="h-12 m-3" />
+        <div className="m-3">
+          <h2 className="text-md font-bold">न्याय विभाग</h2>
+          <h1 className="text-md font-bold">JUDICIARY INFORMATION SYSTEM</h1>
         </div>
-
-        <div className="flex items-center">
-          <ul className="flex gap-2 p-2 m-2">
-            <li className="p-2 text-lg font-semibold hover:text-gray-700 cursor-pointer">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="p-2 text-lg font-semibold hover:text-gray-700 cursor-pointer">
-              <Link to="/aboutus">About Us</Link>
-            </li>
-            <li className="p-2 text-lg font-semibold hover:text-gray-700 cursor-pointer">
-              <Link to="/judiciaryinfo">Judicial Information</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="flex justify-center items-center pr-2">
+      </div>
+      <ul className="flex gap-2 p-2 m-2 items-center">
+        {["Home", "About Us", "Judiciary Info"].map((text, idx) => (
+          <li key={idx} className="p-2 text-lg font-semibold hover:text-gray-700">
+            <Link to={text === "Home" ? "/" : `/${text.replace(" ", "").toLowerCase()}`}>{text}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="flex items-center">
         <button
-  className="h-9 px-3 py-1 text-md font-semibold text-gray-500 border border-gray-500 rounded shadow-md"
-  onClick={() => navigate("/login")}
->
-  Login
-</button>
-</div>
-
-
+          className="h-9 px-3 mr-6 py-1 text-md font-semibold text-white rounded shadow-md bg-green-600 mr-2"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </button>
       </div>
     </div>
   );
