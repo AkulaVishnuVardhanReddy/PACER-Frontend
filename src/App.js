@@ -10,7 +10,6 @@ import JudiciaryInfo from './Components/JudiciaryInfo';
 import MainLayout from './Components/MainLayout';
 import ProtectedRoute from './Components/ProtectedRoute';
 import AddAccount from './Components/Registrar/AddAccount';
-import RemoveAccountForm from './Components/Registrar/RemoveAccount';
 import CreateCourtCase from './Components/Registrar/AddCourtCase';
 import ScheduleCourtCase from './Components/Registrar/ScheduleCase';
 import PendingCourtCases from './Components/Registrar/PendingCases';
@@ -30,7 +29,6 @@ import PublicProsecutor from './Components/LawyerJudge/PublicProsecutor';
 import CaseDetails from './Components/LawyerJudge/CaseDetails';
 import UserProfile from './Components/UserProfile';
 import Payment from './Components/LawyerJudge/Payment';
-import UpdateUser from './Components/Registrar/UpdateUser';
 import UpdateCourtCase from './Components/Registrar/UpdateCase';
 
 
@@ -58,10 +56,8 @@ const App = () => {
 
         <Route path="registrar/*" element={<ProtectedRoute component={MainLayout} requiredRole="ROLE_REGISTRAR"/>}>
           <Route path="add-account" element={<AddAccount />} />
-          <Route path="remove-account" element={<RemoveAccountForm />} />
           <Route path="create-court-case" element={<CreateCourtCase />} />
           <Route path="schedule-court-case" element={<ScheduleCourtCase />} />
-          <Route path="update-user" element={<UpdateUser />} />
           <Route path="update-case" element={<UpdateCourtCase />} />
           <Route path="pending-court-cases" element={<PendingCourtCases />} />
           <Route path="resolved-court-cases" element={<ResolvedCourtCases />} />

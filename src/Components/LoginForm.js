@@ -35,7 +35,7 @@ const Login = () => {
           <div className="mb-4 relative">
             <FaUser className="absolute left-3 top-3 text-gray-600" />
             <input
-              className="w-full pl-10 py-3 text-sm border rounded-md focus:border-purple-500"
+              className="pl-10 py-3 text-sm border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
               type="text"
               placeholder="User Name"
               value={UserName}
@@ -46,7 +46,7 @@ const Login = () => {
           <div className="mb-6 relative">
             <FaLock className="absolute left-3 top-3 text-gray-600" />
             <input
-              className="w-full pl-10 py-3 text-sm border rounded-md focus:border-purple-500"
+              className="pl-10 py-3 text-sm border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={Password}
