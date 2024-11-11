@@ -10,8 +10,8 @@ const LoginHistory = () => {
     e.preventDefault();
     const history = await loginHistoryAPICall(userid)
     if (Array.isArray(history.data)) setLoginHistory(history.data);
-    if (loginHistory.length === 0) setEmpty(false);
-    else setEmpty(true);
+    if (history.data.length === 0) setEmpty(true);
+    else setEmpty(false);
   };
 
   

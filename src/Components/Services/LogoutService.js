@@ -1,15 +1,7 @@
-import { getCurrentDateTime } from "./DateTIme";
+import { getCurrentDateTime } from "./DateTime";
 
-export const logoutService = () => {
-    const time = sessionStorage.getItem("loginTime");
-    const logoutTime = getCurrentDateTime();
-    const userId = sessionStorage.getItem("userId");
-
-    return {
-        "user": {
-            "id": userId 
-        },
-        "loginTime": time, 
-        "logoutTime": logoutTime
-    };
-};
+export const logoutService = () => ({
+    "user": { "id": sessionStorage.getItem("userId") },
+    "loginTime": sessionStorage.getItem("loginTime"),
+    "logoutTime": getCurrentDateTime()
+});

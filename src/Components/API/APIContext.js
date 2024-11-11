@@ -1,4 +1,4 @@
-import { getCurrentDateTime } from "../Services/DateTIme";
+import { getCurrentDateTime } from "../Services/DateTime";
 import { apiClient } from "./APIClient";
 import { getFirstNameByUserName, getUseridByUserName } from "./PublicAPICalls";
 
