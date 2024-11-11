@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Profile</h2>
+      <h2 className="text-3xl font-extrabold font-mono text-gray-800 text-center mb-8">Profile</h2>
 
       
       <div className="flex justify-center mb-6">
@@ -62,7 +62,7 @@ const UserProfile = () => {
           </tr>
           <tr className="border-b border-gray-200">
             <td className="px-4 py-3 font-medium text-gray-600">Password</td>
-            <td className="px-4 py-3 text-gray-700">**************</td>
+            <td className="px-4 py-3 text-gray-700">********</td>
           </tr>
         </tbody>
       </table>

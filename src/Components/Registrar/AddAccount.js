@@ -5,9 +5,11 @@ const AddAccount = () => {
   const [created, setCreated] = useState(false);
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    firstName: "", lastName: "", dob: "", emailId: "", phoneNo: "", photo: null,
+    firstName: "", lastName: "", dob: "", emailId: "", phoneNo: "",
     role: { id: "" }, username: "", password: "", questionAns1: "", questionAns2: ""
   });
+  const [photo, setphoto] = useState(null);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +21,29 @@ const AddAccount = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    setphoto(e.target.files[0]);
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await AddAccountAPICall(formData);
-    setMessage(result ? "Account created successfully!" : "Failed to create Account!");
-    setCreated(result);
+    const data = new FormData();
+    data.append("imageFile", photo); // Should match @RequestPart("imageFile")
+    data.append("user", new Blob([JSON.stringify(formData)], { type: "application/json" })); // Should match @RequestPart("user")
+  
+    try {
+      const result = await AddAccountAPICall(data);
+      setMessage(result ? "Account created successfully!" : "Failed to create Account!");
+      setCreated(result.status === 201);
+    } catch (error) {
+      console.error("Error in submission:", error);
+      setMessage("Failed to create Account!");
+      setCreated(false);
+    }
   };
+  
+  
 
   const inputClass = "border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm";
 
@@ -69,6 +88,18 @@ const AddAccount = () => {
             />
           </div>
         ))}
+
+        <div>
+            <label className="block text-gray-700 font-medium mb-2">Upload Image</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+              className={inputClass}
+            />
+          </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">

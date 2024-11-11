@@ -48,7 +48,7 @@ const Header = () => {
         </div>
         <div className="m-3">
           <h2 className="text-md font-bold">न्याय विभाग</h2>
-          <h1 className="text-md font-bold">DEPARTMENT OF JUSTICE</h1>
+          <h1 className="text-md font-bold">JUDICIARY INFORMATION SYSTEM</h1>
         </div>
       </div>
 

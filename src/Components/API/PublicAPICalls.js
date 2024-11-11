@@ -6,6 +6,30 @@ const authHeaders = () => ({
     'Content-Type': 'application/json'
 });
 
+const authHeadersForPhoto = () => ({
+  'Authorization': `Basic ${sessionStorage.getItem("auth")}`
+});
+
+export const postRequestForPhotoUser = async (url, data) => {
+  try {
+    const response = await apiClient.post(url, data, { headers: authHeadersForPhoto() });
+    return response;
+  } catch (error) {
+    console.error(`Error in POST request to ${url}:`, error);
+    throw error;
+  }
+};
+
+export const getRequestForPhoto = async (url) => {
+  try {
+    const response = await apiClient.get(url, { headers: authHeadersForPhoto() });
+    return response;
+  } catch (error) {
+    console.error(`Error in GET request to ${url}:`, error);
+    throw error;
+  }
+};
+
 
 export const postRequest = async (url, data) => {
     try {

@@ -1,9 +1,9 @@
-import { postRequest, putRequest } from "./PublicAPICalls";
+import { postRequest, postRequestForPhotoUser, putRequest } from "./PublicAPICalls";
 import { getRequest } from "./PublicAPICalls";
 
 
 export const CreateCaseAPICall = (formData) => postRequest('/registrar/court-cases', formData);
-export const AddAccountAPICall = (formData) => postRequest('/registrar/users', formData);
+export const AddAccountAPICall = (formData) => postRequestForPhotoUser('/registrar/users', formData);
 export const ScheduleCourtCaseAPICall = (formData) => postRequest('/registrar/cases/hearing', formData);
 export const PendingCasesAPICall = () => getRequest('/registrar/court-cases/status/pending');
 export const ResolvedCasesAPICall = () => getRequest('/registrar/court-cases/status/resolved');
