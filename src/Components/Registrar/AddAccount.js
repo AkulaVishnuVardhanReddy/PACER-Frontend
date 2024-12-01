@@ -51,7 +51,7 @@ const AddAccount = () => {
       <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">User Registration</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         {["First Name", "Last Name", "Username", "Password"].map((label, idx) => 
-          renderInput(label, label.replace(" ", "").toLowerCase(), label === "Password" ? "password" : "text")
+          renderInput(label, label === "First Name" ? "firstName" : label === "Last Name" ? "lastName" : label.replace(" ", "").toLowerCase(), label === "Password" ? "password" : "text")
         )}
       </div>
       <div className="space-y-6">
