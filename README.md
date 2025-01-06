@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+PACER Judiciary Information System (JIS) - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the frontend repository of the Judiciary Information System (JIS)! This project aims to simplify court case management by providing an intuitive and efficient user interface for registrars, lawyers, and judges to manage and access court cases seamlessly
 
-## Available Scripts
+✨ Project Overview
+The frontend application is built with ReactJS and styled using TailwindCSS, delivering a modern, user-friendly experience. This application connects to a Spring Boot backend via RESTful APIs to manage data and handle user roles.
 
-In the project directory, you can run:
+🛠️ Technologies and Skills Used
+Frontend Framework
+ReactJS: The foundation of the application, enabling dynamic user interfaces.
+Styling
+TailwindCSS: A utility-first CSS framework that ensures a clean, modern design with rapid customization and responsiveness.
+Axios: Seamless communication between the frontend and backend for data fetching and state synchronization.
+Routing and Navigation
+React Router: Smooth and dynamic navigation between components, including protected routes for role-based access control.
+State Management
+React's useState and useEffect hooks to manage component-level state and API interactions.
+Authentication
+JWT Integration: Role-based access control and user authentication implemented via tokens stored in session storage.
+Version Control and Collaboration
+Git & GitHub: Managed code versions and collaborative contributions effectively.
 
-### `npm start`
+⚙️ Specifications
+Features
+Role-Based UI: Different interfaces for registrars, lawyers, and judges based on their access permissions.
+Dynamic Case Management:
+Search for past cases using keywords.
+Schedule hearings, record case summaries, and manage adjournments dynamically.
+User Authentication:
+Secure login system integrated with JWT.
+Session storage for managing user roles and maintaining active sessions.
+Responsive Design:
+Fully responsive layout optimized for desktops, tablets, and mobile devices.
+Ensures seamless accessibility across all platforms.
+Payment System for Lawyers:
+Displays the number of accessed cases and charges lawyers for historical data browsing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
